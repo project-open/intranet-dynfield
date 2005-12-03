@@ -1242,7 +1242,9 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
     "
 
     # Skip empty where clause
-    if {"" == $where_clause} { set sql "" }
+    if {"" == $where_clause} {
+	set sql "" 
+    }
 
     set extra(where) $sql
     set extra(bind_vars) [util_ns_set_to_list -set $bind_vars]
