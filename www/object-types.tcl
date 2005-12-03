@@ -13,8 +13,8 @@ ad_page_contract {
 # Default & Security
 # ------------------------------------------------------------------
 
-set title "Object Types"
-set context [list $title]
+set page_title "Object Types"
+set context_bar [im_context_bar [list /intranet-dynfield/ "DynField"] $page_title]
 
 set user_id [ad_maybe_redirect_for_registration]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
@@ -69,10 +69,12 @@ list::create \
 
 
 db_multirow -extend { object_attributes_url } object_types select_object_types {
-    select object_type,
-           pretty_name
-      from acs_object_types
-     order by lower(pretty_name)
+	select	object_type,
+    		pretty_name
+	from	acs_object_types
+	where	object_type in ('im_company', 'im_project', 'person')
+	order by
+		lower(pretty_name)
 } {
     set object_attributes_url "object-type?object_type=$object_type"
 }

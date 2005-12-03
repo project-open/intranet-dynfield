@@ -1,10 +1,11 @@
 <master>
-<property name="title">@title@</property>
-<property name="context">@context@</property>
+<property name="title">@page_title@</property>
+<property name="context">@context_bar@</property>
 
 <ul class="action-links">
   <li><a href="object-types">#intranet-dynfield.Object_Types#</a></li>
   <li><a href="widgets">#intranet-dynfield.Widgets#</a></li>
+  <li><a href="permissions">#intranet-dynfield.Permissions#</a></li>
   <li><a href="widget-examples">#intranet-dynfield.Widget_Examples#</a>
   <li><a href="export.xml">#intranet-dynfield.Export#</a></li>
   <li><a href="upload">#intranet-dynfield.Import#</a></li>

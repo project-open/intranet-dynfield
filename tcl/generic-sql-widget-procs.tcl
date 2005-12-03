@@ -1,6 +1,6 @@
 ad_library {
 
-    Additional OpenACS Widgets for use with the FlexBase
+    Additional Widgets for use with the intranet-dynfield
     extensible architecture
 
     @author Frank Bergmann frank.bergmann@project-open.com
@@ -71,7 +71,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     		}
     	append sql_html " >\n"
     	if {[exists_and_not_null element(optional)] && $element(optional)} {
-		append sql_html "<option value=\"\"> [_ flexbase.no_value]</option>"
+		append sql_html "<option value=\"\"> [_ intranet-dynfield.no_value]</option>"
     	}
     	foreach sql $key_value_list {
 		set key [lindex $sql 0]
