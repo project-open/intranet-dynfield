@@ -1,6 +1,6 @@
 ad_library {
 
-    Additional OpenACS Widgets for use with the FlexBase
+    Additional OpenACS Widgets for use with the DynField
     extensible architecture
 
     @author Frank Bergmann frank.bergmann@project-open.com
@@ -18,7 +18,7 @@ ad_proc -public template::widget::category_tree { element_reference tag_attribut
 
     The widget takes a tree from the categories package and displays all
     of its leaves in an indented drop-down box. For details on creating
-    and modifying FlexBase widgets please see the FlexBase documentation.
+    and modifying DynField widgets please see the DynField documentation.
 } {
     upvar $element_reference element
 
@@ -94,7 +94,7 @@ ad_proc -public template::widget::category_tree { element_reference tag_attribut
 
     	append category_html ">\n "
     	if {[exists_and_not_null element(optional)] && $element(optional) && !$multiple_p} {
-    		append category_html "<option value=\"\"> [_ flexbase.no_value]</option>"
+    		append category_html "<option value=\"\"> [_ intranet-dynfield.no_value]</option>"
     	}
     	foreach category [category_tree::get_tree $tree_id] {
 		set cat_id [lindex $category 0]
