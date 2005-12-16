@@ -22,9 +22,6 @@ ad_proc -public template::widget::category_tree { element_reference tag_attribut
 } {
     upvar $element_reference element
 
-#   Show all availabe variables in the variable frame
-#   ad_return_complaint 1 "<pre>\n'$element(custom)'\n[array names element]\n</pre>"
-
     if { [info exists element(custom)] } {
     	set params $element(custom)
     } else {
@@ -68,7 +65,6 @@ ad_proc -public template::widget::category_tree { element_reference tag_attribut
 
     } else {
     	    	
-    	#ns_log notice "category_widget ---------------> $element(html)"
     	set category_html "<select name=\"$element(name)\" id=\"$element(name)\" "
     	if {[exists_and_not_null element(multiple_p)] && $element(multiple_p)} {
     		set multiple_p 1
@@ -106,7 +102,7 @@ ad_proc -public template::widget::category_tree { element_reference tag_attribut
 		if {$cat_level>1} {
 			set indent [category::repeat_string "&nbsp;" [expr 2 * $cat_level]]
     		}
-    		# notice "\n \n \n ******************* category_widget indent $indent"
+
     		if {[lsearch -exact $default_value_list $cat_id] == -1} {
     	   		append category_html "<option value=\"$cat_id\"> $indent $cat_name&nbsp;&nbsp;</option>"
     		} else {
