@@ -2228,6 +2228,11 @@ ad_proc -public im_dynfield::append_attributes_to_form {
         }
 	if {"none" == $display_mode} { continue }
 
+	if {"edit" == $display_mode} {
+	    if {![im_object_permission -object_id $dynfield_attribute_id -user_id $user_id -privilege "write"]} {
+		set display_mode "display"
+	    }
+	}
 
 	if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: attribute_name=$attribute_name, datatype=$datatype, widget=$widget, storage_type_id=$storage_type_id" }
 
