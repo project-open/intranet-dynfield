@@ -69,6 +69,7 @@ set widget_options [list \
 	[list "P/O Category" im_category_tree] \
 	[list "OpenACS Category" category_tree] \
 	[list "Generic SQL" generic_sql] \
+	[list "Cost Center Tree" im_cost_center_tree] \
 	[list "Hidden" hidden] \
 ]
 
