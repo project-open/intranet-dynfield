@@ -268,8 +268,8 @@ create table im_dynfield_attr_multi_value (
 -- delete potentially existing menus and plugins if this
 -- file is sourced multiple times during development...
 
-select im_component_plugin__del_module('intranet-dynfield');
-select im_menu__del_module('intranet-dynfield');
+-- select im_component_plugin__del_module('intranet-dynfield');
+-- select im_menu__del_module('intranet-dynfield');
 
 
 -- Setup the "Dynfield" main menu entry
