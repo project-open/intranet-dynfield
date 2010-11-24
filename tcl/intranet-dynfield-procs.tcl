@@ -1106,6 +1106,9 @@ ad_proc -public im_dynfield::append_attributes_to_form {
     </ul>
 } {
     set debug 0
+
+    upvar 1 ajax_post_data ajax_post_data_build
+
     if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: object_type=$object_type, object_id=$object_id" }
     set user_id [ad_get_user_id]
 
@@ -1306,7 +1309,15 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	    -required_p $required_p \
 	    -pretty_name $pretty_name \
 	    -help $help
-
+	
+	if { 0 != $field_cnt } {
+	    append ajax_post_data_build " + "
+	}
+	if { "date" == $widget } {
+	    append ajax_post_data_build "\"<$attribute_name>\" + document.invoices_dynfield\['$attribute_name.year'\].value + \"-\" + document.invoices_dynfield\['$attribute_name.month'\].value + \"-\" + document.invoices_dynfield\['$attribute_name.day'\].value + \"</$attribute_name>\""
+	} else {
+	    append ajax_post_data_build "\"<$attribute_name>\" + document.invoices_dynfield.$attribute_name.value + \"</$attribute_name>\""
+	}
 	incr field_cnt
 
     }	
