@@ -1854,8 +1854,7 @@ ad_proc -public im_dynfield::form {
 	    if {$table_n != $table_name} {
 		set extension_exist [db_string object_exists "select count(*) from $table_n where $column_i=:object_id"]
 		if {!$extension_exist} {
-		    # todo : create it
-		    # mandatory fields!!!!!!!
+		    # todo : create it mandatory fields
 		}
 
 	    }
