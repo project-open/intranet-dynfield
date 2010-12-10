@@ -86,7 +86,7 @@ foreach widget_node $widgets_list {
     	# create new widget	
     	db_transaction {
     		db_exec_plsql create_widget ""
-    		ns_write "<li><font color=green>Widget created !!!!</font></li>"
+    		ns_write "<li><font color=green>Widget created</font></li>"
 	} on_error {
 	        ns_write "<li><font color=red>Error creating new widget:</font> $errmsg</li>"
         }
@@ -104,7 +104,7 @@ foreach widget_node $widgets_list {
 		       parameters      = :parameters
 		       where
         	       widget_id = :widget_id"
-        	ns_write "<li><font color=green>Updated !!!!</font></li>"
+        	ns_write "<li><font color=green>Updated</font></li>"
         } on_error {
         	ns_write "<li><font color=red>Error updating widget:</font> $errmsg</li>"
         }  
@@ -141,12 +141,12 @@ foreach obj_type $object_types_list {
     				(object_type,interface_type_key,join_column)
     				values
     				(:object_type_name,:interface_type_key,:join_column)"
-    			ns_write "<li><font color=green>Interface added !!!!</font></li>"
+    			ns_write "<li><font color=green>Interface added</font></li>"
     		} on_error {
     			ns_write "<li><font color=red>Error adding Interface:</font> $errmsg</li>"
     		}
     	} else {
-    		ns_write "<li><font color=orange>Interface already exists for this object_type !!!!</font></li>"
+    		ns_write "<li><font color=orange>Interface already exists for this object_type</font></li>"
     	}
     }
     ns_write "</ul>"
@@ -169,12 +169,12 @@ foreach obj_type $object_types_list {
     				(object_type, table_name, id_column)
     				values
     				(:object_type_name,:table_name,:id_column)"
-    			ns_write "<li><font color=green>Extension table added !!!!</font></li>"
+    			ns_write "<li><font color=green>Extension table added</font></li>"
     		} on_error {
     			ns_write "<li><font color=red>Error adding extension table:</font> $errmsg</li>"
     		}
     	} else {
-    		ns_write "<li><font color=orange>Extension table already exists for this object_type !!!!</font></li>"
+    		ns_write "<li><font color=orange>Extension table already exists for this object_type</font></li>"
     	}
     	ns_write "</ul>"
     }
@@ -203,7 +203,7 @@ foreach obj_type $object_types_list {
 				(page_url,object_type,layout_type,table_height,table_width,adp_file,default_p)
 				values
 				(:page_url,:object_type_name,:layout_type,:table_height,:table_width,:adp_file,:default_p)"
-				ns_write "<li><font color=green>Page layout added !!!!</font></li>"
+				ns_write "<li><font color=green>Page layout added</font></li>"
 		} on_error {
 			ns_write "<li><font color=red>Error adding page layout:</font> $errmsg</li>"
 		}
@@ -215,7 +215,7 @@ foreach obj_type $object_types_list {
 				table_width = :table_width,
 				adp_file = :adp_file,
 				default_p = :default_p"
-				ns_write "<li><font color=green>Page layout updated !!!!</font></li>"
+				ns_write "<li><font color=green>Page layout updated</font></li>"
 		} on_error {
 			ns_write "<li><font color=red>Error updating page layout:</font> $errmsg</li>"
 		}
@@ -275,7 +275,7 @@ foreach obj_type $object_types_list {
 	                $pretty_name $pretty_plural \
 	            ]
 	
-		    ns_write "<li><font color=green>Acs attribute created !!!!</font></li>"
+		    ns_write "<li><font color=green>Acs attribute created</font></li>"
 		    
 	            # Distinguish between the table_name from acs_attributes
 	            # and the table name in acs_objects.
@@ -314,7 +314,7 @@ foreach obj_type $object_types_list {
 		            values
 		                (:attribute_id, :acs_attribute_id, :widget_name, :deprecated_p)
 		        "
-			ns_write "<li><font color=green>DynField attribute created !!!!</font></li>"
+			ns_write "<li><font color=green>DynField attribute created</font></li>"
 		} else {
 			db_1row "get dynfield attribute_id" "select attribute_id 
 				from im_dynfield_attributes
@@ -344,7 +344,7 @@ foreach obj_type $object_types_list {
 					(attribute_id, page_url, object_type, class, sort_key)
 					values
 					(:attribute_id,:page_url,:object_type_name,:class,:sort_key)"
-				ns_write "<li><font color=green>Page layout created !!!!</font></li>"
+				ns_write "<li><font color=green>Page layout created</font></li>"
 				
 			} else {
 				db_dml "update page layout" "update im_dynfield_layout 
@@ -353,7 +353,7 @@ foreach obj_type $object_types_list {
 					where object_type = :object_type_name
 					and page_url = :page_url 
 					and attribute_id = :attribute_id"
-				ns_write "<li><font color=green>Page layout updated !!!!</font></li>"
+				ns_write "<li><font color=green>Page layout updated</font></li>"
 			}
 		} on_error {
 			ns_write "<li><font color=red>Error processing DynField layout:</font> $errmsg</li>"
