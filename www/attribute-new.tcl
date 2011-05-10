@@ -411,9 +411,8 @@ ad_form -name attribute_form -form $form_fields -new_request {
         set return_url [ad_return_url]
     }
 
-    ad_returnredirect $return_url
 
-#    ad_returnredirect "attribute-new-2?[export_vars -url {object_type widget_name attribute_name pretty_name table_name required_p modify_sql_p pretty_plural description also_hard_coded_p pos_y label_style list_id return_url attribute_id}]"
+    ad_returnredirect [export_vars -base "/intranet-dynfield/object-type" {object_type}]
     ad_script_abort
 }
 
