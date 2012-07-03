@@ -338,6 +338,32 @@ ad_form -name attribute_form -form $form_fields -new_request {
     }
 } -on_submit {
 } -new_data {
+
+    set attr [split $attribute_name ":"]
+    if {[llength $attr] >1} {
+        set attribute_name [lindex $attr 1]
+        set table_name [lindex $attr 0]
+    }
+
+    set attribute_id [im_dynfield::attribute::add \
+                          -object_type $object_type \
+                          -widget_name $widget_name \
+                          -attribute_name $attribute_name \
+                          -pretty_name $pretty_name \
+                          -pretty_plural $pretty_plural \
+                          -table_name $table_name \
+                          -required_p $required_p \
+                          -modify_sql_p $modify_sql_p \
+                          -include_in_search_p $include_in_search_p \
+                          -also_hard_coded_p $also_hard_coded_p \
+                          -datatype $datatype \
+                          -label_style $label_style \
+                          -pos_y $pos_y \
+                          -help_text $help_text \
+                          -section_heading $section_heading \
+			  ]
+
+
 } -edit_data {
     # Update information
 
