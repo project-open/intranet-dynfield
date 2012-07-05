@@ -5,7 +5,7 @@ ad_page_contract {
     @cvs-id $Id$
 } {
     {object_type ""}
-    {attribute_id 0}
+    attribute_id:integer,optional
     attribute_name:optional
     {acs_attribute_id 0}
     {required_p "f"}
