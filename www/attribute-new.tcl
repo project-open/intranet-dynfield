@@ -21,7 +21,7 @@ ad_page_contract {
 # Initialization, defaults & security
 # ******************************************************
 
-ns_log Notice "attribute-new: attribute_id=$attribute_id, acs_attribute_id=$acs_attribute_id"
+# ns_log Notice "attribute-new: attribute_id=$attribute_id, acs_attribute_id=$acs_attribute_id"
 set user_id [ad_maybe_redirect_for_registration]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
@@ -40,8 +40,9 @@ if {0 != $acs_attribute_id} {
     " -default "acs_object"]
 }
 
-if {0 != $attribute_id} {
-    db_1row attribute_info "
+
+if {[exists_and_not_null attribute_id]} {
+    db_0or1row attribute_info "
     select
 	a.object_type,
 	a.pretty_name,
@@ -65,6 +66,13 @@ if {0 != $attribute_id} {
 	fa.attribute_id = :attribute_id
     	and fa.acs_attribute_id = a.attribute_id
     "
+
+    if {![db_0or1row attribute_texts "
+                select section_heading, help_text from im_dynfield_type_attribute_map where attribute_id = :attribute_id limit 1
+        "]} {
+                set section_heading ""
+                set help_text ""
+    }
     set element_mode "view"
 } else {
     set element_mode "edit"
@@ -337,6 +345,8 @@ ad_form -name attribute_form -form $form_fields -new_request {
         "Attribute $attribute_name already exists for <a href=\"object-type?[export_vars -url {object_type}]\">$object_info(pretty_name)</a>."
     }
 } -on_submit {
+    # figure out the datatype
+    set datatype [db_string datatype "select acs_datatype from im_dynfield_widgets where widget_name = :widget_name"]
 } -new_data {
 
     set attr [split $attribute_name ":"]
