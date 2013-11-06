@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="intranet-dynfield" package_version="3.4.0.7.0" locale="en_US" charset="ISO-8859-1">
+<message_catalog package_key="intranet-dynfield" locale="en_US" charset="ISO-8859-1">
 
   <msg key="absolute">Absolute</msg>
   <msg key="ACS_Datatype">ACS Datatype</msg>
@@ -29,6 +29,7 @@
   <msg key="Documentation">Documentation</msg>
   <msg key="documentation">documentation</msg>
   <msg key="Dynfield_Actions">Dynfield Permissions &amp; Visibility</msg>
+  <msg key="DynField_Admin">DynField Admin</msg>
   <msg key="Dynfield_Attributes">Dynfield Attributes</msg>
   <msg key="Dynfield_Layout">Dynfield Layout</msg>
   <msg key="Edit_the_form_adp_file">Edit the form adp file</msg>
@@ -36,6 +37,7 @@
   <msg key="examples">examples</msg>
   <msg key="Exchequer_Supplier_Code">Exchequer Supplier Code</msg>
   <msg key="Export">Export Intranet-Dynfield Information</msg>
+  <msg key="Filter">Filter</msg>
   <msg key="Gender_Select">Gender Select</msg>
   <msg key="Hide_interfaces">Hide Interfaces</msg>
   <msg key="ID_Column">ID Column</msg>
