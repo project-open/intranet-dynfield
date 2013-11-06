@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="intranet-dynfield" package_version="3.4.0.7.0" locale="de_DE" charset="ISO-8859-1">
+<message_catalog package_key="intranet-dynfield" locale="de_DE" charset="ISO-8859-1">
 
   <msg key="absolute">Absolut</msg>
   <msg key="ACS_Datatype">ACS Datentyp</msg>
@@ -32,7 +32,7 @@
   <msg key="Dynfield_Attributes">Dynfield-Attribute</msg>
   <msg key="Dynfield_Layout">Dynfield-Layout</msg>
   <msg key="Edit_the_form_adp_file">Editiere die Form der adp Akte</msg>
-  <msg key="Email_Address">Email Adresse</msg>
+  <msg key="Email_Address">E-Mail Adresse</msg>
   <msg key="examples">Beispiele</msg>
   <msg key="Exchequer_Supplier_Code">Schatzamt Lieferant Code</msg>
   <msg key="Export">Intranet-Dynfield Informationen exportieren</msg>
