@@ -49,6 +49,7 @@ if { [empty_string_p $attribute_id] } {
 	and aa.attribute_id = fa.acs_attribute_id
         and fa.attribute_id not in (select attribute_id from im_dynfield_layout
                                   where page_url = :page_url and object_type = :object_type)
+	order by aa.pretty_name
     }
 } else {
     set list_sql {
@@ -56,11 +57,11 @@ if { [empty_string_p $attribute_id] } {
 	from acs_attributes aa, im_dynfield_attributes fa
 	where aa.object_type = :object_type
 	and aa.attribute_id = fa.acs_attribute_id
+	order by aa.pretty_name
     }
 }
 
 set attribute_list [concat [list [list "-- Select one --" ""]] [db_list_of_lists get_attributes_not_in_page "$list_sql"]]
-
 
 form::create attrib_layout
 element::create attrib_layout action -datatype text -widget hidden
@@ -111,6 +112,8 @@ if { [form is_request attrib_layout] } {
 			and aa.attribute_id = fa.acs_attribute_id
 			and fa.attribute_id = fl.attribute_id
 			and fl.page_url = :page_url
+		order by
+			aa.attribute_name
 	"
 	if { [db_0or1row get_attribute $sql_get_attribute] } {
 	    set action update
