@@ -283,7 +283,8 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		case when a.min_n_values = 0 then 'f' else 't' end as required_p,
 		a.default_value,
 		t.table_name as object_type_table_name,
-		t.id_column as object_type_id_column,
+		t.id_column as object_type_id_column_bad,
+		ott.id_column as object_type_id_column,
 		at.table_name as attribute_table,
 		at.object_type as attr_object_type,
 		dw.widget
@@ -292,7 +293,8 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		im_dynfield_attributes aa,
 		im_dynfield_widgets dw,
 		acs_attributes at,
-		acs_object_types t
+		acs_object_types t,
+		acs_object_type_tables ott
 	where
 		a.object_type = :object_type
 		and t.object_type = a.ancestor_type
@@ -300,6 +302,8 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		and a.attribute_id = at.attribute_id
 		and aa.widget_name = dw.widget_name
 		and (aa.also_hard_coded_p is NULL or aa.also_hard_coded_p = 'f')
+		and ott.object_type = at.object_type
+		and ott.table_name = at.table_name
 	order by
 		attribute_id
     "
