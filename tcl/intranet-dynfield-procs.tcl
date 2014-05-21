@@ -549,6 +549,7 @@ ad_proc -public im_dynfield::attribute_store {
 
     if {"" == $user_id} { set user_id [ad_get_user_id] }
     set current_user_id $user_id
+    im_security_alert_check_alphanum -location "im_dynfield::attribute_store: object_type" -value $object_type
 
     # Get object_type main table and column id
     # fraber 111004: Also get other object fields. These are now obsolete in the arglist...

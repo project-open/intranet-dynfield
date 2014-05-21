@@ -431,11 +431,12 @@ ad_proc -public ams::option::name {
 } {
     # A dereferencing function is a Pl/SQL routine that converts an option into a pretty name
     set deref_function "im_name_from_id"
-    if {"" != $widget} { 
+    if {"" != $widget} {
+	im_security_alert_check_integer -location "ams::option::name: widget" -value $widget
 	set deref_function [util_memoize [list db_string deref "select deref_plpgsql_function from im_dynfield_widgets where widget_name = '$widget'" -default "im_name_from_id"]]
     }
 
-    set value [util_memoize [list db_string deref "select ${deref_function}($option_id)"]]
+    set value [util_memoize [list db_string deref "select ${deref_function}($option_id) from dual"]]
     return $value
 }
 

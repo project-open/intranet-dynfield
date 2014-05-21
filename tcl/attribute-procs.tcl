@@ -78,6 +78,8 @@ ad_proc -public im_dynfield::attribute::get_name_from_id {
     
     @param attribute_id Dynfield attribute_id. This differs from the attribute_id of acs_attributes as the dynfield attribute is actually an acs_object so we can have permissions on it.
 } {
+    im_security_alert_check_integer -location "im_dynfield::attribute::get_name_from_id: attribute_id" -value $attribute_id
+
     return [util_memoize [list db_string name "select attribute_name from acs_attributes aa, im_dynfield_attributes ida where ida.acs_attribute_id = aa.attribute_id and ida.attribute_id = $attribute_id" -default ""]]
 }
 
