@@ -1220,7 +1220,7 @@ BEGIN
 	delete from acs_permissions
 	where object_id = p_widget_id;
 
-	PERFORM acs_object__delete(v_widget_id);
+	PERFORM acs_object__delete(p_widget_id);
 	return 0;
 end;' language 'plpgsql';
 
