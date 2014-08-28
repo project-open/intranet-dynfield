@@ -1036,7 +1036,8 @@ ad_proc -public im_dynfield::append_attributes_to_form {
        select	m.attribute_id,
                 m.object_type_id as ot,
                 m.display_mode as dm,
-		m.help_text as ht
+		m.help_text as ht,
+		m.section_heading as sh
         from
                 im_dynfield_type_attribute_map m,
                 im_dynfield_attributes a,
@@ -1056,6 +1057,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	set key "$attribute_id.$ot"
 	set display_mode_hash($key) $dm
 	set help_text($attribute_id) $ht
+	set section_heading($attribute_id) $sh
 
 	# Now we've got atleast one display mode configured:
 	# Set the default to "none", so that no field is shown
@@ -1250,6 +1252,12 @@ ad_proc -public im_dynfield::append_attributes_to_form {
             set help_message ""
         }
 
+        if {[info exists section_heading($dynfield_attribute_id)]} {
+            set section_head $section_heading($dynfield_attribute_id)
+        } else {
+            set section_head ""
+        }
+
 	im_dynfield::append_attribute_to_form \
 	    -attribute_name $attribute_name \
 	    -widget $widget \
@@ -1260,6 +1268,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	    -required_p $required_p \
 	    -pretty_name $pretty_name \
 	    -help_text $help_message \
+	    -section_heading $section_head \
 	    -admin_html $admin_html
 
 	# fraber 110405: doesn't work.
@@ -1386,6 +1395,7 @@ ad_proc -public im_dynfield::append_attribute_to_form {
     -attribute_name:required
     -pretty_name:required
     -help_text:required
+    -section_heading:required
     {-admin_html "" }
     {-debug 1}
 } {
@@ -1452,6 +1462,10 @@ ad_proc -public im_dynfield::append_attribute_to_form {
     append after_html $admin_html
 
     if {$debug} { ns_log Notice "im_dynfield::append_attribute_to_form: form_id=$form_id, attribute_name=$attribute_name, widget=$widget" }
+
+    if {"" != $section_heading} {
+	template::form::section -legendtext $section_heading $form_id $section_heading
+    }
 
     # ToDo: Can we unify this switch?
     # Is there a problem to pass an "options" parameter to a date widget?
