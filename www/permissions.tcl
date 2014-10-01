@@ -102,13 +102,13 @@ db_foreach group_list $group_list_sql {
 
     append table_header "
       <th><A href=$group_url?group_id=$group_id>
-      [im_gif $profile_gif $group_name]
+      [im_gif -translate_p 1 $profile_gif $group_name]
     </A></th>\n"
     incr num_groups
 	append column_selects "<option value='[expr $num_groups+2]' selected='selected'>$group_name</option>"
 }
 append table_header "
-  <th>[im_gif del "Delete Dynfield"]</th>
+  <th>[im_gif -translate_p 1 del "Delete Dynfield"]</th>
 </tr>
 "
 

@@ -1242,7 +1242,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	if {$admin_p} {
 	    set admin_help ""
 	    set dynfield_admin_url [export_vars -base "/intranet-dynfield/attribute-new" {{attribute_id $dynfield_attribute_id} return_url}]
-	    set admin_html "<a href='$dynfield_admin_url'>[im_gif wrench $admin_help]</a>"
+	    set admin_html "<a href='$dynfield_admin_url'>[im_gif -translate_p 0 wrench $admin_help]</a>"
 	}
     
 	# Help
@@ -1454,7 +1454,7 @@ ad_proc -public im_dynfield::append_attribute_to_form {
 
     # Show help text as part of a help GIF
     if {$help_text ne ""} {
-        set after_html [im_gif help $help_text]
+        set after_html [im_gif -translate_p 0 help $help_text]
     } else {
         set after_html ""
     }
