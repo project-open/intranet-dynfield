@@ -127,16 +127,15 @@ set left_scale [db_list left_dim "
         select  a.attribute_id
         from
                 im_dynfield_attributes a,
-                acs_attributes aa,
-                im_dynfield_layout idl
+                acs_attributes aa
         where
                 a.acs_attribute_id = aa.attribute_id
                 and aa.object_type = :acs_object_type
-                and idl.attribute_id = a.attribute_id
 		$attribute_where
         order by
-                aa.sort_order, idl.pos_y, aa.pretty_name
+                aa.sort_order, aa.pretty_name
 "]
+
 
 # The array maps category_id into "attribute_id category" - a pretty
 # string for each column, to be used as column header
