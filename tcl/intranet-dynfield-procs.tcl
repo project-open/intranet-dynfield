@@ -998,6 +998,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
     <li>Extracting the values of the attributes from a number of storage tables.
     </ul>
 } {
+
     if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: object_type=$object_type, object_id=$object_id" }
     set user_id [ad_get_user_id]
     set return_url [im_url_with_query]
@@ -1164,10 +1165,18 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 
 
     set field_cnt 0
+
+    if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: Now looping through attributes and evaluate show mode" }
+
     db_foreach attributes $attributes_sql {
 
+	if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: ***** Evaluating attribute name: $attribute_name" }
+
 	# Check if the elements as disabled in the layout page
-	if {$page_url_exists_p && "" == $page_url} { continue }
+	if {$page_url_exists_p && "" == $page_url} { 
+	    if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: Skipping - no page URL found" }
+	    continue 
+	}
 
 	# Check if the current user has the right to read and write on the dynfield
 	set read_p [im_object_permission \
@@ -1180,15 +1189,20 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 			-user_id $user_id \
 			-privilege "write" \
 	]
-	if {!$read_p} { continue }
+	if {!$read_p} { 
+	    if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: Skipping, not readable" }
+	    continue 
+	}
 
 	set display_mode $default_display_mode
 	if {$advanced_filter_p} {
 	    # In filter mode the user also needs to be able to "write"
 	    # the field, otherwise he won't be able to enter values...
-	    if {!$write_p} { continue }
+	    if {!$write_p} { 
+		if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: Skipping, 'Advanced Filter Mode' requires write permissions." }
+		continue 
+	    }
 	}
-
 
 	# object_subtype_id can be a list, so go through the list
 	# and take the highest one (none - display - edit).
@@ -1213,7 +1227,10 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 
 	if {$debug} { ns_log Notice "append_attributes_to_form3: name=$attribute_name, display_mode=$display_mode" }
 
-	if {"none" == $display_mode} { continue }
+	if {"none" == $display_mode} { 
+	    if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: Skipping, display_mode = 'none'" }
+	    continue 
+	}
 
 	# Don't show a read-only mode in an "edit" form
 	# Doesn't work yet, because the field is expected later
