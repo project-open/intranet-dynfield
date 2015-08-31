@@ -249,6 +249,7 @@ ad_proc -public im_dynfield::widget_options_not_cached {
 ad_proc -public im_dynfield::search_sql_criteria_from_form {
     -form_id:required
     -object_type:required
+    { -exclude_attributes ""}
 } {
     This procedure generates a subquery SQL clause
     "(select object_id from ...)" that can be used
@@ -264,6 +265,10 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 } {
     # Get the list of all elements in the form
     set form_elements [template::form::get_elements $form_id]
+
+    # Add two dummy elements in order to avoid syntax error
+    lappend exclude_attributes "none"
+    lappend exclude_attributes "none"
 
     # Get the main table for the data type
     db_1row main_table "
@@ -304,6 +309,7 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		and (aa.also_hard_coded_p is NULL or aa.also_hard_coded_p = 'f')
 		and ott.object_type = at.object_type
 		and ott.table_name = at.table_name
+		and a.attribute_name not in ('[join $exclude_attributes "','"]')
 	order by
 		attribute_id
     "
