@@ -55,6 +55,28 @@ SELECT im_category_new(22100, 'HR Managers', 'Intranet User Type');
 SELECT im_category_new(22110, 'Freelance Managers', 'Intranet User Type');
 
 
+create or replace function inline_0 ()
+returns integer as $body$
+declare
+	row		RECORD;
+	v_category_id	integer;
+begin
+	FOR row IN
+		select	g.*
+		from	groups g,
+			im_profiles p
+		where	p.profile_id = g.group_id
+        LOOP
+		PERFORM im_category_new(nextval('im_categories_seq')::integer, row.group_name, 'Intranet User Type');
+		update im_categories set aux_int1 = row.group_id where category = row.group_name and category_type = 'Intranet User Type';
+        END LOOP;
+
+        RETURN 0;
+end;$body$ language 'plpgsql';
+select inline_0();
+drop function inline_0();
+
+
 
 create table im_dynfield_type_attribute_map (
 	attribute_id		integer
