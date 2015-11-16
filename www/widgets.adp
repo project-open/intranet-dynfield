@@ -57,7 +57,7 @@
   </multiple>
 </table>
 
-<table width=100%>
+<table width="100%">
   <tr>
     <td colspan=99 align=right>
       <input type=submit value="Delete Selected Widgets">
