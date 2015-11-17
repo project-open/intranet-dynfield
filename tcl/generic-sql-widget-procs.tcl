@@ -81,7 +81,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     # ---------------------------------------------------------------
     # Perform variable substitution with URL variables
     #
-    set substitution_hash(user_id) [ad_get_user_id]
+    set substitution_hash(user_id) [ad_conn user_id]
     set form_vars [ns_conn form]
     foreach form_var [ad_ns_set_keys $form_vars] {
 	set form_val [ns_set get $form_vars $form_var]
@@ -96,7 +96,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     set key_value_list [list]
     if {[catch {
 
-	# evaluate TCL commands embedded into the SQL, such as [ad_get_user_id] etc.
+	# evaluate TCL commands embedded into the SQL, such as [ad_conn user_id] etc.
 	set sql_statement [lang::message::format $sql_statement $substitution_list]
 	eval "set sql_statement \"$sql_statement\""
 

@@ -32,7 +32,7 @@ ad_proc -public im_dynfield::left_navbar {
 } {
     Return a HTML component with the list of DynField pages.
 } {
-    set user_id [ad_get_user_id]
+    set user_id [ad_conn user_id]
     set locale [lang::user::locale -user_id $user_id]
     set result [im_navbar_write_tree \
                         -user_id $user_id \
@@ -553,7 +553,7 @@ ad_proc -public im_dynfield::attribute_store {
     # Defaults and setup
     # -------------------------------------------------
 
-    if {"" == $user_id} { set user_id [ad_get_user_id] }
+    if {"" == $user_id} { set user_id [ad_conn user_id] }
     set current_user_id $user_id
     im_security_alert_check_alphanum -location "im_dynfield::attribute_store: object_type" -value $object_type
 
@@ -1006,7 +1006,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 } {
 
     if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: object_type=$object_type, object_id=$object_id" }
-    set user_id [ad_get_user_id]
+    set user_id [ad_conn user_id]
     set return_url [im_url_with_query]
 
     # Does the specified layout page exist? Otherwise use "default".
@@ -1260,7 +1260,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	if {$search_p} { set required_p "f" }
 
 	# Show "wrench" for administrators
-	set admin_p [im_is_user_site_wide_or_intranet_admin [ad_get_user_id]]
+	set admin_p [im_is_user_site_wide_or_intranet_admin [ad_conn user_id]]
 	set admin_html ""
 	if {$admin_p} {
 	    set admin_help ""
@@ -1565,7 +1565,7 @@ ad_proc -public im_dynfield::append_attributes_to_im_view {
     of a joined object, such as the "im_company" in the case of
     im_invoices.
 } {
-    set current_user_id [ad_get_user_id]
+    set current_user_id [ad_conn user_id]
 
     set also_hard_coded_p_sql ""
     if {!$include_also_hard_coded_p} { 
@@ -1741,7 +1741,7 @@ ad_proc -public im_dynfield::attribute_validate {
     # Defaults and setup
     # -------------------------------------------------
 
-    if {"" == $user_id} { set user_id [ad_get_user_id] }
+    if {"" == $user_id} { set user_id [ad_conn user_id] }
     set current_user_id $user_id
 
     if { "user" == $object_type } {
