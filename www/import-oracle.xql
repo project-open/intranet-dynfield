@@ -27,7 +27,7 @@ BEGIN
                 object_id =>		null,
                 object_type =>		'dynfield_attribute',
                 creation_date =>	sysdate,
-                creation_user =>	'[ad_get_user_id]'
+                creation_user =>	'[ad_conn user_id]'
         );
 END;
   </querytext>
