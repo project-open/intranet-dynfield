@@ -11,7 +11,7 @@
 
 <if 1 ne @nomaster_p@>
 <form action="attribute-type-map" method=POST>
-<%= [export_form_vars object_type return_url] %>
+<%= [export_vars -form {object_type return_url}] %>
 	<table>
 	<tr class=rowtitle><td class=rowtitle align=center colspan=2>Filter Subtypes</td></tr>
 	<tr>
@@ -37,7 +37,7 @@
 
 
 <form action="attribute-type-map-2" method=POST>
-<%= [export_form_vars acs_object_type object_subtype_id return_url] %>
+<%= [export_vars -form {acs_object_type object_subtype_id return_url}] %>
 
 <table>
 @header_html;noquote@

@@ -505,7 +505,7 @@ ad_proc -public im_dynfield::set_local_form_vars_from_http {
     -form_id:required
 } {
     Set local variables to the values passed on in HTTP,
-    so that we don't need to add all of them into the ad_header.
+    so that we don't need to add all of them into the ad header.
     @param form_id: search form id
     @return:	Form_vars that are also in the HTTP are set to the
 		calling variable frame

@@ -499,7 +499,7 @@ ad_form \
     
     # If we're an enumeration, redirect to start adding possible values.
     if { [string equal $datatype "enumeration"] } {
-	ad_returnredirect enum-add?[ad_export_vars {attribute_id return_url}]
+	ad_returnredirect enum-add?[export_vars {attribute_id return_url}]
     } else {
 	ad_returnredirect $return_url
     }

@@ -119,7 +119,7 @@ append table_header "
 
 set table "
 <form action=dynfield-action method=post>
-[export_form_vars object_type return_url]
+[export_vars -form {object_type return_url}]
 <table id='editable_table'>
 $table_header\n"
 
