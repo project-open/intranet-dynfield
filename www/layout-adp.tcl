@@ -93,7 +93,7 @@ if { [form is_request layout-adp] } {
 	close $file_stream
 	element::set_value layout-adp content $file_content
     } errmsg] {
-	ns_log WARNING "layout-adp.tcl ------------------------> file does not exist '${adp_dir}${file_name}' or $errmsg"
+	ns_log Warning "layout-adp.tcl ------------------------> file does not exist '${adp_dir}${file_name}' or $errmsg"
     }
 
     element::set_value layout-adp action $action
