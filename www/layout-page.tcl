@@ -14,7 +14,7 @@ ad_page_contract {
 # Default & Security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 
 
@@ -50,7 +50,7 @@ form::create page_layout
 element::create page_layout object_type -datatype text -widget hidden -value $object_type
 element::create page_layout action -datatype text -widget hidden -value add
 
-if { [exists_and_not_null page_url] } {
+if { ([info exists page_url] && $page_url ne "") } {
     element::create page_layout page_url -datatype text -label "Page url" -mode view
     element::create page_layout layout_type -datatype text -label "Layout type" -widget select -options $type_list \
 	-help_text "If you chose relative, please define the number of columns for the form" -mode view
@@ -63,7 +63,7 @@ if { [exists_and_not_null page_url] } {
 
 element::create page_layout table_width -datatype integer -label "Columns" -html {size 4 maxlength 10} -optional
 
-if { [exists_and_not_null page_url] && [form is_request page_layout] } {
+if { ([info exists page_url] && $page_url ne "") && [form is_request page_layout] } {
     db_1row get_page_values {
 	select	page_url,
 		layout_type,
@@ -88,7 +88,7 @@ if { [exists_and_not_null page_url] && [form is_request page_layout] } {
 if { [form is_valid page_layout] } {
     form get_values page_layout
 
-    if { $action != "update" } {
+    if { $action ne "update" } {
 	db_transaction {	
 	    db_dml insert_page {
 		insert into im_dynfield_layout_pages (
@@ -109,7 +109,7 @@ if { [form is_valid page_layout] } {
 	}
     }
     
-    ad_returnredirect "layout-position?[export_vars {object_type page_url}]"
+    ad_returnredirect [export_vars -base layout-position {object_type page_url}]
 }
 
 

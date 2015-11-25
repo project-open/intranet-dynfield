@@ -23,7 +23,7 @@ ad_page_contract {
 set provided_return_url $return_url
 set provided_return_url_label $return_url_label
 
-if {$list_id == ""} {
+if {$list_id eq ""} {
 
 
     # Check that the list doesn't exist before
@@ -145,7 +145,7 @@ template::multirow create mapped_attributes attribute_id attribute_name pretty_n
     required_p section_heading attribute_url unmap_url text_url \
     required_url optional_url object_type widget_name widget_url
    
-if {$return_url == ""} {
+if {$return_url eq ""} {
     set return_url [ad_return_url]
 }
 
@@ -163,7 +163,7 @@ foreach mapped_dynfield_id [::im::dynfield::Attribute dynfield_attributes -list_
     set text_url [export_vars -base "list-text" -url {list_id attribute_id return_url return_url_label}]
     set required_url [export_vars -base "list-attributes" -url {list_id attribute_id return_url return_url_label {command "required"}}]
     set optional_url [export_vars -base "list-attributes" -url {list_id attribute_id return_url return_url_label {command "optional"}}]
-    if {[exists_and_not_null widget_name]} {
+    if {([info exists widget_name] && $widget_name ne "")} {
         set widget_url [::im::dynfield::Widget widget_url -widget_name $widget_name]
 	} else {
 	    set widget_url ""

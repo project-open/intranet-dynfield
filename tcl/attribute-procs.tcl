@@ -129,7 +129,7 @@ ad_proc -public im_dynfield::attribute::add {
 
     # massage parameters
     set attribute_name [string tolower $attribute_name]
-    if {$pretty_plural == ""} { set pretty_plural $pretty_name }
+    if {$pretty_plural eq ""} { set pretty_plural $pretty_name }
 
     # Get the storage type from the widget.
     db_1row select_widget_pretty_and_storage_type { 
@@ -157,7 +157,7 @@ ad_proc -public im_dynfield::attribute::add {
 
     # Right now, we do not support number restrictions for attributes
     set max_n_values 1
-    if { [string eq $required_p "t"] } {
+    if {$required_p == "t"} {
 	set min_n_values 1
     } else {
 	set min_n_values 0
@@ -232,7 +232,7 @@ ad_proc -public im_dynfield::attribute::add {
 
     # Add the column to the table if it doesn't already exist
     # and if the attribut's storage type if "value" (not a multimap)
-    if {[string equal $modify_sql_p "t"] && ![db_column_exists $table_name $attribute_name] && !$multimap_p } {
+    if {$modify_sql_p == "t" && ![db_column_exists $table_name $attribute_name] && !$multimap_p } {
         db_dml add_column "alter table $table_name add column $attribute_name $sql_datatype"
     }
    return $attribute_id
@@ -329,7 +329,7 @@ ad_proc im_dynfield::attribute::map {
 		    where attribute_id = :attribute_id and object_type_id = :list_id
 	    "
         
-        if {$required_p == ""} {
+        if {$required_p eq ""} {
             # Determine if an attribute should be required in this list by the default value for required.
             set required_p [db_string required "select case when aa.min_n_values = 0 then 'f' else 't' end as required_p from acs_attributes aa, im_dynfield_attributes ida where ida.acs_attribute_id = aa.attribute_id and ida.attribute_id = :attribute_id" -default "f"]
         }
@@ -457,7 +457,7 @@ namespace eval attribute {
     	set column_name $acs_attribute_name
         }
 
-        if { [empty_string_p $table_name] || [empty_string_p $column_name] } {
+        if { $table_name eq "" || $column_name eq "" } {
             # We have to have both a non-empty table name and column name
             error "We do not have enough information to automatically remove this\
      attribute. Namely, we are missing either the table name or the column name"

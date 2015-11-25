@@ -28,7 +28,7 @@ ad_proc -public template::widget::calculated_sql { element_reference tag_attribu
 
     set sql_pos [lsearch $params sql]
     if { $sql_pos >= 0 } {
-    	set sql_statement [lindex $params [expr $sql_pos + 1]]
+    	set sql_statement [lindex $params $sql_pos+1]
     } else {
 	return "Calculated Sql Widget: Error: Didn't find 'sql' parameter"
     }

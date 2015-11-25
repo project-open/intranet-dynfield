@@ -1,13 +1,13 @@
 <master src="master">
 
-<property name="title">@title@</property>
-<property name="context">@context@</property>
+<property name="doc(title)">@title;literal@</property>
+<property name="context">@context;literal@</property>
 
 
 
 <form method=post action=attribute-delete>
-<input type=hidden name=return_url value="@return_url@">
-<input type=hidden name=object_type value="@object_type@">
+<input type="hidden" name="return_url" value="@return_url@">
+<input type="hidden" name="object_type" value="@object_type@">
 <table class="list">
 
   <tr class="list-header">
@@ -43,15 +43,15 @@
     </td>
 
     <td class="list-narrow">
-	<input type=checkbox name=attribute_ids value="@attributes.dynfield_attribute_id@">
+	<input type="checkbox" name="attribute_ids" value="@attributes.dynfield_attribute_id@">
     </td>
 
   </tr>
   </multiple>
 
   <tr>
-    <td colspan=99 align=right>
-      <input type=submit value="Del">
+    <td colspan="99" align="right">
+      <input type="submit" value="Del">
     </td>
   </tr>
 </table>
@@ -64,8 +64,8 @@
 
 <h1>#intranet-dynfield.lt_Extension_Tables_for_#</h1>
 <form method=post action=extension-table-delete>
-<input type=hidden name=object_type value="@object_type@">
-<input type=hidden name=return_url value="@return_url@">
+<input type="hidden" name="object_type" value="@object_type@">
+<input type="hidden" name="return_url" value="@return_url@">
 <table class="list">
 
   <tr class="list-header">
@@ -88,21 +88,21 @@
 	@extension_tables.id_column@
     </td>
     <td class="list-narrow">
-	<input type=checkbox name=extension_tables value="@extension_tables.table_name@">
+	<input type="checkbox" name="extension_tables" value="@extension_tables.table_name@">
     </td>
   </tr>
   </multiple>
 
   <tr>
-    <td colspan=99 align=right>
-      <input type=submit value="Del">
+    <td colspan="99" align="right">
+      <input type="submit" value="Del">
     </td>
   </tr>
 </table>
 </form>
 
 <ul class="action-links">
-<li><a href="extension-table-new?object_type=@object_type@&return_url=@return_url_encoded;noquote@">#intranet-dynfield.lt_Add_a_new_extension_t#</a>
+<li><a href="extension-table-new?object_type=@object_type@&amp;return_url=@return_url_encoded;noquote@">#intranet-dynfield.lt_Add_a_new_extension_t#</a>
 </ul>
 
 
@@ -129,7 +129,7 @@
 	@objects.object_id@
     </td>
     <td class="list-narrow">
-      <a href=object-new?object_type=@object_type@&object_id=@objects.object_id@>
+      <a href="object-new?object_type=@object_type@&amp;object_id=@objects.object_id@">
 	@objects.object_name@
       </a>
     </td>

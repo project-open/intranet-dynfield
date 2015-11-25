@@ -324,7 +324,7 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
     set ext_tables [list]
     set ext_table_join_where ""
     db_foreach ext_tables $ext_table_sql {
-	if {$ext_table_name == ""} { continue }
+	if {$ext_table_name eq ""} { continue }
 	if {$ext_table_name == $main_table_name} { continue }
 
 	lappend ext_tables $ext_table_name
@@ -377,7 +377,7 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
     }
 
     set where_clause [join $criteria " and\n            "]
-    if { ![empty_string_p $where_clause] } {
+    if { $where_clause ne "" } {
 	set where_clause " and $where_clause"
     }
 
@@ -633,7 +633,7 @@ ad_proc -public im_dynfield::attribute_store {
 	}
 
 	# Empty table name? Ugly, but that's the main table then...
-	if {[empty_string_p $table_name]} { set table_name $main_table }
+	if {$table_name eq ""} { set table_name $main_table }
 
         # object_subtype_id can be a list, so go through the list
         # and take the highest one (none - display - edit).
@@ -658,7 +658,7 @@ ad_proc -public im_dynfield::attribute_store {
 
 	# Is this a multi-value field?
 	set multiple_p [template::element::get_property $form_id $attribute_name multiple_p]
-	if {[empty_string_p $multiple_p]} { set multiple_p 0 }	
+	if {$multiple_p eq ""} { set multiple_p 0 }	
 	if {$storage_type_id == [im_dynfield_storage_type_id_multimap]} { set multiple_p 1 }
 
 	if {!$multiple_p} {
@@ -849,10 +849,10 @@ ad_proc -public im_dynfield::widget_request {
 		            set option_list ""
 		            set options_pos [lsearch $parameter_list "options"]
 		            if {$options_pos >= 0} {
-			            set option_list [lindex $parameter_list [expr $options_pos + 1]]
+			            set option_list [lindex $parameter_list $options_pos+1]
 		            }
 		    
-		            if { [string eq $required_p "f"] && ![string eq $widget "checkbox"]} {
+		            if { $required_p == "f" && $widget ne "checkbox" } {
 			            set option_list [linsert $option_list -1 [list " [_ intranet-dynfield.no_value] " ""]]
 		            }
 
@@ -957,7 +957,7 @@ ad_proc -public im_dynfield::elements {
     <li>widget         
     <li>html_options</ol>
 } {
-    if {$user_id == ""} {
+    if {$user_id eq ""} {
         set user_id [ad_conn user_id]
     }
     set attributes [list]
@@ -1028,7 +1028,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
     }
 
     # add a hidden object_id field to the form
-    if {[exists_and_not_null object_id]} {
+    if {([info exists object_id] && $object_id ne "")} {
     	if {![template::element::exists $form_id "object_id"]} {
 	    if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: creating object_id=$object_id" }
 	    template::element create $form_id "object_id" \
@@ -1217,7 +1217,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	    if {[info exists display_mode_hash($key)]} { 
 		switch $display_mode_hash($key) {
 		    edit { set display_mode "edit" }
-		    display { if {$display_mode == "none"} { set display_mode "display" } }
+		    display { if {$display_mode eq "none"} { set display_mode "display" } }
 		}
 	    }
 	}
@@ -1331,7 +1331,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	    if {[info exists display_mode_hash($key)]} { 
 		switch $display_mode_hash($key) {
 		    edit { set display_mode "edit" }
-		    display { if {$display_mode == "none"} { set display_mode "display" } }
+		    display { if {$display_mode eq "none"} { set display_mode "display" } }
 		}
 	    }
 	}
@@ -1427,9 +1427,9 @@ ad_proc -public im_dynfield::append_attribute_to_form {
     # Might translate the datatype into one for which we have a
     # validator (e.g. a string datatype would change into text).
     set translated_datatype [attribute::translate_datatype $datatype]
-    if {$datatype == "number"} {
+    if {$datatype eq "number"} {
         set translated_datatype "float"
-    } elseif {$datatype == "date"} {
+    } elseif {$datatype eq "date"} {
         set translated_datatype "date"
     }
 
@@ -1446,27 +1446,27 @@ ad_proc -public im_dynfield::append_attribute_to_form {
 
         set custom_pos [lsearch $parameter_list "custom"]
         if {$custom_pos >= 0} {
-            set custom_parameters [lindex $parameter_list [expr $custom_pos + 1]]
+            set custom_parameters [lindex $parameter_list $custom_pos+1]
         }
 
         set html_pos [lsearch $parameter_list "html"]
         if {$html_pos >= 0} {
-            set html_parameters [lindex $parameter_list [expr $html_pos + 1]]
+            set html_parameters [lindex $parameter_list $html_pos+1]
         }
 
         set format_pos [lsearch $parameter_list "format"]
         if {$format_pos >= 0} {
-            set format_parameters [lindex $parameter_list [expr $format_pos + 1]]
+            set format_parameters [lindex $parameter_list $format_pos+1]
         }
 
         set after_html_pos [lsearch $parameter_list "after_html"]
         if {$after_html_pos >= 0} {
-            set after_html_parameters [subst [lindex $parameter_list [expr $after_html_pos + 1]]]
+            set after_html_parameters [subst [lindex $parameter_list $after_html_pos+1]]
         }
 
 	set options_pos [lsearch $parameter_list "options"]
 	if {$options_pos >= 0} {
-	    set option_parameters [lindex $parameter_list [expr $options_pos + 1]]
+	    set option_parameters [lindex $parameter_list $options_pos+1]
 	}
     }
 
@@ -1495,7 +1495,7 @@ ad_proc -public im_dynfield::append_attribute_to_form {
     switch $widget {
         checkbox - radio - select - multiselect - im_category_tree - category_tree {
 	    # These widgets need an additional -options parameter
-            if { [string eq $required_p "f"] && ![string eq $widget "checkbox"]} {
+            if { $required_p == "f" && $widget ne "checkbox" } {
                 set option_parameters [linsert $option_parameters -1 [list " [_ intranet-dynfield.no_value] " ""]]
             }
             if {![template::element::exists $form_id "$attribute_name"]} {

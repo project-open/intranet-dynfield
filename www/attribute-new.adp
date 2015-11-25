@@ -1,7 +1,7 @@
 <master src="master">
-<property name="title">@title@</property>
-<property name="context">@context@</property>
-<property name="left_navbar">@left_navbar_html;noquote@</property>
+<property name="doc(title)">@title;literal@</property>
+<property name="context">@context;literal@</property>
+<property name="left_navbar">@left_navbar_html;literal@</property>
 
 <%= [im_box_header "DynField Base Information"] %>
 <formtemplate id="attribute_form"></formtemplate>

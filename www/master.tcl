@@ -24,7 +24,7 @@ set navbar_ul ""
 foreach {url label id} $link_list {
     set selected_p 0
 
-    if {[string equal $page_url $url]} {
+    if {$page_url eq $url} {
         set selected_p 1
         if { ${url} == ${package_url} } {
 	    set title [ad_conn instance_name]

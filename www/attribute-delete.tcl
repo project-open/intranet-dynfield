@@ -21,7 +21,7 @@ ad_page_contract {
 # Default & Security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
     ad_return_complaint 1 "You have insufficient privileges to use this page"
@@ -32,7 +32,7 @@ set title "[_ intranet-dynfield.Delete_Warning]"
 set context [list [list "object-types" "Object Types"] [list "$return_url" "$object_type"] $title]
 set html_warning ""
 
-if {![exists_and_not_null continue_p]} {
+if {(![info exists continue_p] || $continue_p eq "")} {
 	set continue_p "1"
 	foreach attr_id $attribute_ids {
 		db_1row "get attribute" "select attribute_name 

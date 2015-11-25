@@ -15,7 +15,7 @@ ad_page_contract {
 # Default & Security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 
 if {!$user_is_admin_p} {
@@ -73,7 +73,7 @@ if { [form is_request layout-adp] } {
 	where object_type = :object_type
 	and page_url = :page_url
     } -default ""]
-    if { ![empty_string_p $file_name] } {
+    if { $file_name ne "" } {
 	set action update
         element::set_properties layout-adp adp_file \
 		-help_text "[_ intranet-dynfield.This_file_is_located_in] '${adp_dir}'" -value $file_name \
@@ -108,7 +108,7 @@ if { ![form is_request layout-adp] && ![form is_valid layout-adp] } {
     set action [element get_value layout-adp action]
 }
 
-if { [info exists action] && $action == "update" } {
+if { [info exists action] && $action eq "update" } {
     set title "[_ intranet-dynfield.Edit_the_form_adp_file]"
 } else {
     set title "[_ intranet-dynfield.Create_a_new_adp_file_for_this_form]"
@@ -123,10 +123,10 @@ if { [form is_valid layout-adp] } {
     form get_values layout-adp
     
     # no duplicated filename
-    if { [file extension adp_file] != ".adp" } {
+    if { [file extension adp_file] ne ".adp" } {
 	append adp_file ".adp"
     }
-    if { $action == "insert" && [file exists "${adp_dir}${adp_file}"]} {
+    if { $action eq "insert" && [file exists "${adp_dir}${adp_file}"]} {
 	element::set_error layout-adp adp_file "[_ intranet-dynfield.This_file_already_exists]"
 	return
     }
@@ -157,7 +157,7 @@ if { [form is_valid layout-adp] } {
     
     
     # save file
-    if { $action == "insert" } {
+    if { $action eq "insert" } {
 	set adp_stream [open "${adp_dir}${adp_file}" w]
 	puts -nonewline $adp_stream $content
 	close $adp_stream
@@ -170,7 +170,7 @@ if { [form is_valid layout-adp] } {
 	    where object_type = :object_type
 	    and page_url = :page_url
 	}
-    } elseif { $action == "update" } {
+    } elseif { $action eq "update" } {
 	set adp_stream [open "${adp_dir}${adp_file}" w]
         puts -nonewline $adp_stream $content
         close $adp_stream

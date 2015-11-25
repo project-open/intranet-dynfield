@@ -14,7 +14,7 @@ ad_page_contract {
 # Default & Security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 
 if {!$user_is_admin_p} {
@@ -41,7 +41,7 @@ db_1row get_layout_type {
     and page_url = :page_url
 } -column_array "page"
 
-if { [empty_string_p $attribute_id] } {
+if { $attribute_id eq "" } {
     set list_sql {
 	select  aa.pretty_name, fa.attribute_id
 	from acs_attributes aa, im_dynfield_attributes fa
@@ -69,7 +69,7 @@ element::create attrib_layout object_type -datatype text -widget hidden -value $
 element::create attrib_layout page_url -datatype text -widget hidden -value $page_url
 element::create attrib_layout attribute_id -label "[_ intranet-dynfield.Attribute]" -datatype integer \
 	-widget select -options $attribute_list
-if { $page(layout_type) == "absolute" } {
+if { $page(layout_type) eq "absolute" } {
     element::create attrib_layout class -label "[_ intranet-dynfield.Class]" -datatype text \
 	    -html {size 20 maxlength 200} -help_text "[_ intranet-dynfield.Enter_the_css_class_name]"
     element::create attrib_layout sort_key -datatype text -widget hidden -value ""
@@ -98,7 +98,7 @@ element::create attrib_layout div_class -label "[lang::message::lookup "" intran
 # -------------------------------------------
 
 if { [form is_request attrib_layout] } {
-    if { ![empty_string_p $attribute_id] } {
+    if { $attribute_id ne "" } {
 	set sql_get_attribute "
 		select 
 			fl.*,
@@ -141,7 +141,7 @@ if { [form is_request attrib_layout] } {
 # Adp variables
 #------------------------------------------------------
 
-if { [info exists action] && $action == "update" } {
+if { [info exists action] && $action eq "update" } {
     set title "[_ intranet-dynfield.Attribute_update]"
 } else {
     set title "[_ intranet-dynfield.Add_new_attribute]"
@@ -156,7 +156,7 @@ set context [list [list "object-types" "[_ intranet-dynfield.Object_Types]"] [li
 if { [form is_valid attrib_layout] } {
     form get_values attrib_layout
     
-    if { $action == "add" } {
+    if { $action eq "add" } {
 	db_dml insert_attribute {
 	    insert into im_dynfield_layout
 	    (attribute_id, page_url, pos_x, pos_y, size_x, size_y, label_style, div_class, sort_key)
@@ -179,5 +179,5 @@ if { [form is_valid attrib_layout] } {
 	}
     }
 
-    ad_returnredirect "layout-position?[export_vars {object_type page_url}]"
+    ad_returnredirect [export_vars -base layout-position {object_type page_url}]
 }

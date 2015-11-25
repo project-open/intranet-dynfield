@@ -49,19 +49,19 @@ ad_proc -public template::util::telecom_number::html_view {
 } {
     set telecom_number ""
     if { [parameter::get_from_package_key -parameter "ForceCountryCodeOneFormatting" -package_key "ams" -default "0"] } {
-        if { $national_number != "1" } {
+        if { $national_number != 1 } {
             set telecom_number "[_ ams.international_dial_code]${national_number}-"
         }
     } else {
         set telecom_number ${national_number}
-        if { [exists_and_not_null telecom_number] } { append telecom_number "-" }
+        if { ([info exists telecom_number] && $telecom_number ne "") } { append telecom_number "-" }
     }
     append telecom_number $area_city_code
-    if { [exists_and_not_null telecom_number] } { append telecom_number "-" }
+    if { ([info exists telecom_number] && $telecom_number ne "") } { append telecom_number "-" }
     append telecom_number "$subscriber_number"
-    if { [exists_and_not_null extension] } { append telecom_number "&nbsp;x$extension" }
+    if { ([info exists extension] && $extension ne "") } { append telecom_number "&nbsp;x$extension" }
     set phone_url [parameter::get_from_package_key -parameter "PhoneURL" -package_key "ams" -default ""]
-    if {[empty_string_p $phone_url]} {
+    if {$phone_url eq ""} {
 	return $telecom_number
     } else {
 	return "<a href=\"[eval set foo $phone_url]\">$telecom_number</a>"
@@ -128,12 +128,12 @@ ad_proc -public template::data::validate::telecom_number { value_ref message_ref
         # the number was formatted correctly. If not we need to reply with a message that lets
         # users know how they are supposed to format numbers.
         
-        if { ![exists_and_not_null area_city_code] || ![exists_and_not_null national_number] } {
+        if { (![info exists area_city_code] || $area_city_code eq "") || (![info exists national_number] || $national_number eq "") } {
             set message [_ ams.lt_Telecom_numbers_in_country_code]
         }
     }
 
-    if { [exists_and_not_null message] } {
+    if { ([info exists message] && $message ne "") } {
         return 0
     } else {
         return 1
@@ -185,7 +185,7 @@ ad_proc -public template::data::transform::telecom_number { element_ref } {
             regsub -all {^x} $extension {} extension
         }
     }
-    if { [empty_string_p $subscriber_number] } {
+    if { $subscriber_number eq "" } {
         # We need to return the empty list in order for form builder to think of it 
         # as a non-value in case of a required element.
         return [list]
@@ -365,45 +365,45 @@ ad_proc -public template::widget::telecom_number { element_reference tag_attribu
   
   set output {}
 
-  if { [string equal $element(mode) "edit"] } {
+  if {$element(mode) eq "edit"} {
       
       
 
       set attributes(id) \"telecom_number__$element(form_id)__$element(id)\"
       set summary_number ""
-      if { [exists_and_not_null national_number] } {
-          if { $national_number != "1" } {
+      if { ([info exists national_number] && $national_number ne "") } {
+          if { $national_number != 1 } {
               append summary_number "011-$national_number"
           }
       }
-      if { [exists_and_not_null area_city_code] } {
-          if { [exists_and_not_null summary_number] } { append summary_number "-" }
+      if { ([info exists area_city_code] && $area_city_code ne "") } {
+          if { ([info exists summary_number] && $summary_number ne "") } { append summary_number "-" }
           append summary_number $area_city_code
       }
-      if { [exists_and_not_null subscriber_number] } {
-          if { [exists_and_not_null summary_number] } { append summary_number "-" }
+      if { ([info exists subscriber_number] && $subscriber_number ne "") } {
+          if { ([info exists summary_number] && $summary_number ne "") } { append summary_number "-" }
           append summary_number $subscriber_number
       }
-      if { [exists_and_not_null extension] } {
-          if { [exists_and_not_null summary_number] } { append summary_number "x" }
+      if { ([info exists extension] && $extension ne "") } {
+          if { ([info exists summary_number] && $summary_number ne "") } { append summary_number "x" }
           append summary_number $extension
       }
 #      set summary_number "$national_number\-$area_city_code\-$subscriber_number\x$extension"
-      append output "<input type=\"text\" name=\"$element(id).summary_number\" value=\"[ad_quotehtml $summary_number]\" size=\"20\">"
+      append output "<input type=\"text\" name=\"$element(id).summary_number\" value=\"[ns_quotehtml $summary_number]\" size=\"20\">"
           
   } else {
       # Display mode
       if { [info exists element(value)] } {
           append output "[template::util::telecom_number::get_property html_view $element(value)]"
-          append output "<input type=\"hidden\" name=\"$element(id).itu_id\" value=\"[ad_quotehtml $itu_id]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).national_number\" value=\"[ad_quotehtml $national_number]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).area_city_code\" value=\"[ad_quotehtml $area_city_code]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).subscriber_number\" value=\"[ad_quotehtml $subscriber_number]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).extension\" value=\"[ad_quotehtml $extension]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).sms_enabled_p\" value=\"[ad_quotehtml $sms_enabled_p]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).best_contact_time\" value=\"[ad_quotehtml $best_contact_time]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).location\" value=\"[ad_quotehtml $location]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).phone_type_id\" value=\"[ad_quotehtml $phone_type_id]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).itu_id\" value=\"[ns_quotehtml $itu_id]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).national_number\" value=\"[ns_quotehtml $national_number]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).area_city_code\" value=\"[ns_quotehtml $area_city_code]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).subscriber_number\" value=\"[ns_quotehtml $subscriber_number]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).extension\" value=\"[ns_quotehtml $extension]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).sms_enabled_p\" value=\"[ns_quotehtml $sms_enabled_p]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).best_contact_time\" value=\"[ns_quotehtml $best_contact_time]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).location\" value=\"[ns_quotehtml $location]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).phone_type_id\" value=\"[ns_quotehtml $phone_type_id]\">"
       }
   }
       

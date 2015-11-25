@@ -3,9 +3,9 @@
   # $Workfile: layout-position.adp $ $Revision$ $Date$
 %>
 <master src="master">
-<property name="title">@title@</property>
-<property name="context">@context;noquote@</property>
-<property name="left_navbar">@left_navbar_html;noquote@</property>
+<property name="doc(title)">@title;literal@</property>
+<property name="context">@context;literal@</property>
+<property name="left_navbar">@left_navbar_html;literal@</property>
 
 <h1>@page_url@ Layout for @object_type@</h1>
 

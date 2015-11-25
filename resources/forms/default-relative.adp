@@ -1,22 +1,22 @@
-<table bgcolor=#6699CC cellspacing=0 cellpadding=4 border=0 width="95%">
+<table bgcolor="#6699CC" cellspacing="0" cellpadding="4" border="0" width="95%">
 <tr bgcolor="#FFFFFF">
-  <td align=left><b>@form_properties.title@</b></td>
-  <td align=right>&nbsp;</td>
+  <td align="left"><b>@form_properties.title@</b></td>
+  <td align="right">&nbsp;</td>
 </tr>
 
 <if @elements:rowcount@ le 0>
-  <tr><td colspan=2><i>#intranet-dynfield.No_items#</i></td></tr>
+  <tr><td colspan="2"><i>#intranet-dynfield.No_items#</i></td></tr>
 </if>
 <else>
 
 <tr>
-<td colspan=2>
+<td colspan="2">
 
-<table bgcolor=#99CCFF cellspacing=0 cellpadding=2 border=0 width="100%">
+<table bgcolor="#99CCFF" cellspacing="0" cellpadding="2" border="0" width="100%">
   <tr bgcolor="#99CCFF">
     <% set list_tag $form_properties(headers) %>
     <list name=list_tag>
-      <th align=left>@list_tag:item@</th>
+      <th align="left">@list_tag:item@</th>
     </list>
   </tr>
   
@@ -25,15 +25,15 @@
   <if @elements.rownum@ le @elements:rowcount@>
 
     <if @elements.col@ eq 1>
-      <if @elements.row@ odd><tr bgcolor=#ffffff></if>
-      <else><tr bgcolor=#dddddd></else>
+      <if @elements.row@ odd><tr bgcolor="#ffffff"></if>
+      <else><tr bgcolor="#dddddd"></else>
     </if>
 
    <if @elements.widget@ not in "hidden" "submit"> 
       <td nowrap>     
 
         <if @elements.widget@ in radio checkbox>
-          <table cellpadding=4 cellspacing=0 border=0>
+          <table cellpadding="4" cellspacing="0" border="0">
             <tr>
               <noparse>
                 <formgroup id=@elements.id@>
@@ -75,7 +75,7 @@
 <multiple name=elements>
   <if @elements.widget@ eq "submit">
     <tr bgcolor="#FFFFFF">
-      <td align=right colspan=2><input type=submit name=@elements.id@ value="@elements.label@"></td>
+      <td align="right" colspan="2"><input type="submit" name="@elements.id@" value="@elements.label@"></td>
     </tr>  
   </if>
 </multiple>

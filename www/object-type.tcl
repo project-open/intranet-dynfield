@@ -15,7 +15,7 @@ ad_page_contract {
 # Default & Security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
     ad_return_complaint 1 "You have insufficient privileges to use this page"
@@ -58,7 +58,7 @@ set generate_interfaces 0
 set show_hidde_link "<a href=\"?[export_vars -base {} -url -override {{show_interfaces_p 0}} {object_type orderby show_interfaces_p}]\"> [_ intranet-dynfield.Hide_interfaces]</a>"
 
 db_multirow attributes attributes_query {} {
-    if {[empty_string_p $table_name]} {
+    if {$table_name eq ""} {
 	set table_name $main_table_name
 	set id_column $main_id_column
     } else {
@@ -168,7 +168,7 @@ db_multirow -extend {details_url edit_url delete_url default_url} layout_pages g
     where object_type = :object_type
     [template::list::orderby_clause -name layout_list -orderby]
 " {
-    if { $layout_type == "relative" } {
+    if { $layout_type eq "relative" } {
     	set edit_url [export_vars -base "layout-page" { object_type page_url }] 
     }
     set details_url [export_vars -base "layout-position" { object_type page_url }]

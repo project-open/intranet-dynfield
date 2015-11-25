@@ -15,7 +15,7 @@ set page_title "Widget Examples"
 set context_bar [im_context_bar [list /intranet-dynfield/ "DynField"] $page_title]
 
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
     ad_return_complaint 1 "You have insufficient privileges to use this page"
@@ -99,7 +99,7 @@ ad_form -name widgets_form -form {} -on_submit {}
 set cnt 0
 template::multirow foreach widgets {
 
-#    if { [string equal $storage_type_id [im_dynfield_storage_type_id_multimap]] } {
+#    if {$storage_type_id eq [im_dynfield_storage_type_id_multimap]} {
 #        append form_element { {options { {"Demo Example One" 1} {"Demo Example Two" 2} {"Demo Example Three" 3} {"Demo Example Four" 4} {"Demo Example Five" 5} {"Demo Example Six" 6} }}}
 #    }
 #    lappend form_element [list "label" "<p><strong>$widget_name</strong></p><p>$pretty_plural</p><p><small>widget: $widget<br>datatype: $acs_datatype<br>parameters: $parameters</small></p>"]

@@ -24,7 +24,7 @@ ad_page_contract {
 ad_return_complaint 1 "This feature hasn't been tested after the modifications of DynFields due to CRM"
 
 # security check
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
 # create global variables
 set caller_id [ad_conn user_id]

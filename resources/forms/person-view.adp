@@ -18,7 +18,7 @@
         <span class="form-label"> </span>
         <div class="standard-form-help-text">
 <noparse><formhelptext id="first_names">
-       	  <img src=/shared/images/info.gif width=12 height=9 alt=\[i\] title=Help_text border=0></formhelptext></noparse>
+       	  <img src=/shared/images/info.gif width=12 height=9 alt=\[i\] title=Help_text border="0"></formhelptext></noparse>
           </div>
         </div>
  </div>

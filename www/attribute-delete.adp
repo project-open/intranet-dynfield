@@ -1,7 +1,7 @@
 <master src="master">
 
-<property name="title">@title@</property>
-<property name="context">@context@</property>
+<property name="doc(title)">@title;literal@</property>
+<property name="context">@context;literal@</property>
 
 
 #intranet-dynfield.Warning#!!!!!
@@ -10,4 +10,4 @@
 
 <br/>
 #intranet-dynfield.Do_you_want_continue#? <a href="?<%= [export_vars -url -override {{continue_p 1}} {return_url object_type continue_p attribute_ids}]%>"> #intranet-dynfield.Yes#</a>
-								 <a href="@return_url;noquote@"> #intranet-dynfield.No#</a>
+								 <a href="@return_url@"> #intranet-dynfield.No#</a>

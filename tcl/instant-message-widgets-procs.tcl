@@ -89,7 +89,7 @@ ad_proc -private template::util::skype::status {
     set uri "http://mystatus.skype.com"
 
     #If response_type is image, add to URI the image type to return
-    if { $response_type == "img" } {
+    if { $response_type eq "img" } {
 	switch $image_type {
 	    "balloon"                 {set image_type "balloon"}
 	    "big_classic"             {set image_type "bigclassic"}
@@ -108,15 +108,15 @@ ad_proc -private template::util::skype::status {
     set uri ${uri}/$username
 
     #If response_type is not an image, append it to the URI
-    if { $response_type != "img" } {
+    if { $response_type ne "img" } {
 	set uri ${uri}.$response_type
     }
     
     #If response_type is txt, check for language and character set.
-    if { $response_type == "txt" } {
+    if { $response_type eq "txt" } {
 
 	#If language is specified, check for its availablity and add it to the URI
-	if { ![empty_string_p $language] } {
+	if { $language ne "" } {
 	    string tolower $language
 	    switch $language {
 		"en"    {set language "en"}
@@ -140,7 +140,7 @@ ad_proc -private template::util::skype::status {
 	}
 	
 	#If char_set is specified append it to the URI
-	if { ![empty_string_p $char_set] } {
+	if { $char_set ne "" } {
 	    string tolower $char_set
 	    switch $char_set {
 		"utf"   {set char_set "utf8"}
@@ -223,7 +223,7 @@ ad_proc -public template::util::skype::status_xml {
     set node [$node firstChild]
     set nodelist [$node selectNodes /rdf/status/presence/text()]
 
-    if { [empty_string_p $language] } {
+    if { $language eq "" } {
 	set language "en"
     }
     switch $language {

@@ -38,10 +38,10 @@ ad_proc -public template::util::recurrence::html_view {
     {recur_until {}}
 } {
     set recurrence "Every $every_n $interval_type"
-    if { [exists_and_not_null days_of_week] } {
+    if { ([info exists days_of_week] && $days_of_week ne "") } {
 	append recurrence $days_of_week
     }
-    if { [exists_and_not_null recur_until] } {
+    if { ([info exists recur_until] && $recur_until ne "") } {
 	append recurrence $recur_until
     }
     return [ad_text_to_html $recurrence]
@@ -75,20 +75,20 @@ ad_proc -public template::data::validate::recurrence { value_ref message_ref } {
         # for built in display purposes these characters are not allowed, if you need it 
         # to be allowed make SURE that retrieval procs in AMS are also updated
         # to deal with this change
-        if { [exists_and_not_null message_temp] } { append message " " }
+        if { ([info exists message_temp] && $message_temp ne "") } { append message " " }
         append message "[_ ams.Your_entry_must_not_contain_the_following_characters]: \{ \}."
     }
-    if { $country_code == "US" } {
+    if { $country_code eq "US" } {
         # this should check a cached list
         # this proc cannot for some reason go in the postgresql file...
         if { ![db_0or1row validate_state {
         select 1 from us_states where abbrev = upper(:region) or state_name = upper(:region)
 } ] } {
-            if { [exists_and_not_null message_temp] } { append message " " }
+            if { ([info exists message_temp] && $message_temp ne "") } { append message " " }
             append message "\"$region\" [_ ams.is_not_a_valid_US_state]."
         }
     }
-    if { [exists_and_not_null message_temp] } {
+    if { ([info exists message_temp] && $message_temp ne "") } {
         return 0
     } else {
         return 1
@@ -106,7 +106,7 @@ ad_proc -public template::data::transform::recurrence { element_ref } {
     set days_of_week     [ns_queryget $element_id.region]
     set recur_until      [ns_queryget $element_id.postal_code]
 
-    if { [empty_string_p $every_n] } {
+    if { $every_n eq "" } {
         # We need to return the empty list in order for form builder to think of it 
         # as a non-value in case of a required element.
         return [list]
@@ -219,7 +219,7 @@ ad_proc -public template::widget::recurrence { element_reference tag_attributes 
   
   set output {}
 
-  if { [string equal $element(mode) "edit"] } {
+  if {$element(mode) eq "edit"} {
 
       set every_n_options {
 	  {"Every" 1}
@@ -254,10 +254,10 @@ ad_proc -public template::widget::recurrence { element_reference tag_attributes 
       # Display mode
       if { [info exists element(value)] } {
           append output [template::util::recurrence::get_property html_view $element(value)]
-          append output "<input type=\"hidden\" name=\"$element(id).every_n\" value=\"[ad_quotehtml $every_n]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).interval_type\" value=\"[ad_quotehtml $interval_type]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).days_of_week\" value=\"[ad_quotehtml $days_of_week]\">"
-          append output "<input type=\"hidden\" name=\"$element(id).recur_until\" value=\"[ad_quotehtml $recur_until]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).every_n\" value=\"[ns_quotehtml $every_n]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).interval_type\" value=\"[ns_quotehtml $interval_type]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).days_of_week\" value=\"[ns_quotehtml $days_of_week]\">"
+          append output "<input type=\"hidden\" name=\"$element(id).recur_until\" value=\"[ns_quotehtml $recur_until]\">"
       }
   }
       

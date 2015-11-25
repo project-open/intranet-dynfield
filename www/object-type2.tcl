@@ -15,7 +15,7 @@ ad_page_contract {
 # Default & Security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
     ad_return_complaint 1 "You have insufficient privileges to use this page"
@@ -103,7 +103,7 @@ db_multirow attributes attributes_query $attributes_query {
 		set get_proc_name "dbi::$proc_name\::get_value"	
 		append dbi_interfaces  "$get_proc_name <br/>"
 		
-		if {[empty_string_p $table_name]} {
+		if {$table_name eq ""} {
 			set table_name $main_table_name
 			set id_column $main_id_column
 		} else {
@@ -137,7 +137,7 @@ db_multirow attributes attributes_query $attributes_query {
 				set parameters [lindex $parameters_list 0]
 				set custom_pos [lsearch $parameters "custom"]
 				if {$custom_pos > -1} {
-					set custom_value [lindex $parameters [expr $custom_pos + 1]]
+					set custom_value [lindex $parameters $custom_pos+1]
 					set sql_query [lindex $custom_value 1]
 					#ns_log notice "sql_query $sql_query"
 

@@ -28,7 +28,7 @@ ad_page_contract {
 # Defaults & Security
 # ------------------------------------------------------
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 
 # If used as 
@@ -105,7 +105,7 @@ db_foreach group_list $group_list_sql {
       [im_gif -translate_p 1 $profile_gif $group_name]
     </A></th>\n"
     incr num_groups
-	append column_selects "<option value='[expr $num_groups+2]' selected='selected'>$group_name</option>"
+	append column_selects "<option value='[expr {$num_groups+2}]' selected='selected'>$group_name</option>"
 }
 append table_header "
   <th>[im_gif -translate_p 1 del "Delete Dynfield"]</th>
@@ -166,7 +166,7 @@ set old_package_name ""
 
 db_foreach attributes $attributes_sql {
     incr ctr
-    append table "\n<tr$bgcolor([expr $ctr % 2])>\n"
+    append table "\n<tr$bgcolor([expr {$ctr % 2}])>\n"
     append table "
   <td>
     <A href=$object_type_url?object_type=$object_type&return_url=$return_url>
@@ -191,7 +191,7 @@ db_foreach attributes $attributes_sql {
 	    set action "remove_readable"
 	    set letter "<b>R</b>"
         }
-	set read "<A href=$toggle_url?[export_vars -url { horiz_group_id object_id action return_url}]>$letter</A>"
+	set read "<A href=[export_vars -base $toggle_url { horiz_group_id object_id action return_url}]>$letter</A>"
 
 	set action "add_writable"
 	set letter "w"
@@ -199,7 +199,7 @@ db_foreach attributes $attributes_sql {
 	    set action "remove_writable"
 	    set letter "<b>W</b>"
         }
-	set write "<A href=$toggle_url?[export_vars -url { horiz_group_id object_id action return_url}]>$letter</A>"
+	set write "<A href=[export_vars -base $toggle_url { horiz_group_id object_id action return_url}]>$letter</A>"
 	append table "<td align=center>$read $write</td>"
     }
     append table "<td><input type=checkbox name=attribute_id.$im_dynfield_attribute_id></td>

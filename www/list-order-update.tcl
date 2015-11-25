@@ -19,7 +19,7 @@ ad_page_contract {
 	set doubled_sort_orders [list]
 	foreach {attribute_id sort_order} [array get sort_key] {
 	    set sort_order [string trim $sort_order]
-	    if { $sort_order == "" } {
+	    if { $sort_order eq "" } {
 		lappend no_value_supplied $attribute_id
 	    } elseif { [string is false [string is integer $sort_order]] } {
 		lappend no_integer_supplied $attribute_id $sort_order

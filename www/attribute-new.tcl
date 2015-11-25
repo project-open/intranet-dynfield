@@ -22,7 +22,7 @@ ad_page_contract {
 # Initialization, defaults & security
 # ******************************************************
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
     ad_return_complaint 1 "[_ intranet-dynfield.You_have_insufficient_privileges_to_use_this_page]"
@@ -39,7 +39,7 @@ if {$acs_attribute_id ne ""} {
     " -default "acs_object"]
 }
 
-if {[exists_and_not_null attribute_id]} {
+if {([info exists attribute_id] && $attribute_id ne "")} {
     db_0or1row attribute_info "
     select
 	a.object_type,
@@ -77,7 +77,7 @@ if {[exists_and_not_null attribute_id]} {
 }
 
 
-if {"" eq $label_style} { set label_style "plain" }
+if {$label_style eq ""} { set label_style "plain" }
 
 if {$object_type eq ""} {
     ad_return_complaint 1 "[_ intranet-dynfield.No_object_type_found]<br>
@@ -87,14 +87,14 @@ if {$object_type eq ""} {
 
 acs_object_type::get -object_type $object_type -array "object_info"
 
-if {![exists_and_not_null table_name]} {
+if {(![info exists table_name] || $table_name eq "")} {
    set table_name [db_string table_name "
 	select table_name 
 	from acs_object_types 
 	where object_type=:object_type
     " -default ""]
 }
-if {[string equal $action "already_existing"]} {
+if {$action eq "already_existing"} {
     set title "[_ intranet-dynfield.Add_Attribute]"
 } else {
     set title "[_ intranet-dynfield.Add_a_completely_new_attribute_modify_DB]"
@@ -199,7 +199,7 @@ set form_fields {
 
 # Completely new attribute or
 # modify an already existing attribute?
-if {[string equal $action "already_existing"]} {
+if {$action eq "already_existing"} {
     
     lappend form_fields {attribute_name:text(select) {label {Attribute Name}} {options $attribute_name_options} {help_text "<!<li><a href=\"attribute-new?object_type=$object_type&action=completely_new\">[_ intranet-dynfield.lt_Add_a_completely_new_]</a>"}}
     set modify_sql_p "f"
@@ -365,7 +365,7 @@ ad_form \
     }
     { attribute_name 
         { ![im_dynfield::attribute::exists_p -object_type object_type -attribute_name $attribute_name] } 
-        "Attribute $attribute_name already exists for <a href=\"object-type?[export_vars -url {object_type}]\">$object_info(pretty_name)</a>."
+        "Attribute $attribute_name already exists for <a href=\"[export_vars -base object-type {object_type}]\">$object_info(pretty_name)</a>."
     }
 } -on_submit {
     # figure out the datatype
@@ -407,7 +407,7 @@ ad_form \
 	set min_n_values "1"
     }
 
-    if {$pretty_plural == ""} {
+    if {$pretty_plural eq ""} {
 	set pretty_plural $pretty_name
     }
 
@@ -489,17 +489,17 @@ ad_form \
     #
     # ------------------------------------------------------------------
     
-    if {$return_url == ""} {
+    if {$return_url eq ""} {
 	if {$list_id ne ""} {
 	    set return_url [export_vars -base "list" -url {list_id}]
 	} else {
-	    set return_url "object-type?[export_vars -url {object_type}]"
+	    set return_url [export_vars -base object-type {object_type}]
 	}
     }
     
     # If we're an enumeration, redirect to start adding possible values.
-    if { [string equal $datatype "enumeration"] } {
-	ad_returnredirect enum-add?[export_vars {attribute_id return_url}]
+    if {$datatype eq "enumeration"} {
+	ad_returnredirect [export_vars -base enum-add {attribute_id return_url}]
     } else {
 	ad_returnredirect $return_url
     }

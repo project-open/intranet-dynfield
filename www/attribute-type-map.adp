@@ -1,8 +1,8 @@
 <if 1 ne @nomaster_p@>
 <master src="master">
-<property name="title">@page_title;noquote@</property>
-<property name="context">@context;noquote@</property>
-<property name="left_navbar">@left_navbar_html;noquote@</property>
+<property name="doc(title)">@page_title;literal@</property>
+<property name="context">@context;literal@</property>
+<property name="left_navbar">@left_navbar_html;literal@</property>
 </if>
 
 <h1>@page_title;noquote@</h1>
@@ -13,14 +13,14 @@
 <form action="attribute-type-map" method=POST>
 <%= [export_vars -form {object_type return_url}] %>
 	<table>
-	<tr class=rowtitle><td class=rowtitle align=center colspan=2>Filter Subtypes</td></tr>
+	<tr class=rowtitle><td class=rowtitle align="center" colspan="2">Filter Subtypes</td></tr>
 	<tr>
 	  <td class=form-label>Object Subtype</td>
 	  <td class=form-widget><%= [im_category_select -include_empty_p 1 $category_type object_subtype_id $object_subtype_id] %></td>
 	</tr>
 	<tr>
 	  <td class=form-label></td>
-	  <td class=form-widget><input type=submit></td>
+	  <td class=form-widget><input type="submit"></td>
 	</tr>
 	</table>
 </form>
@@ -44,7 +44,7 @@
 @body_html;noquote@
 <tr>
   <td></td>
-  <td colspan=99><input type=submit></td>
+  <td colspan="99"><input type="submit"></td>
 </tr>
 </table>
 

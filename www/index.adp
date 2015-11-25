@@ -1,8 +1,8 @@
 <master src="master">
-<property name="title">@page_title@</property>
+<property name="doc(title)">@page_title;literal@</property>
 <property name="context">#intranet-core.context#</property>
 <property name="main_navbar_label">admin</property>
-<property name="left_navbar">@left_navbar_html;noquote@</property>
+<property name="left_navbar">@left_navbar_html;literal@</property>
 
 <if @missing_dynfield_object_types@ ne "">
 <p><font color=red>
@@ -22,7 +22,7 @@ by editing the DynField and specifying a value. You can use '0' as a default.
   <li><a href="permissions"><b>Permissions</b></a>:<br>
 	Defines who can read or write a DynField.
 
-  <li><a href="@param_url;noquote@"><b>Parameters</b></a><br>
+  <li><a href="@param_url@"><b>Parameters</b></a><br>
 	
   <li><a href="widgets"><b>Widgets</b></a><br>
 	DynField-Widgets are pieces of HTML code to display the value of

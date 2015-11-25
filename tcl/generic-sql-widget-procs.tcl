@@ -28,7 +28,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
 
     set sql_pos [lsearch $params sql]
     if { $sql_pos >= 0 } {
-    	set sql_statement [lindex $params [expr $sql_pos + 1]]
+    	set sql_statement [lindex $params $sql_pos+1]
     } else {
 	return "Generic SQL Widget: Error: Didn't find 'sql' parameter"
     }
@@ -37,14 +37,14 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     set memoize_max_age [parameter::get_from_package_key -package_key intranet-dynfield -parameter GenericSQLWidgetMemoizeMaxAgeDefault -default 600]
     set memoize_max_age_pos [lsearch $params "memoize_max_age"]
     if { $memoize_max_age_pos >= 0 } {
-        set memoize_max_age [lindex $params [expr $memoize_max_age_pos + 1]]
+        set memoize_max_age [lindex $params $memoize_max_age_pos+1]
     }
 
     # The "include_empty_p" adds an empty line
     set include_empty_p 1
     set include_empty_p_pos [lsearch $params include_empty_p]
     if { $include_empty_p_pos >= 0 } {
-        set include_empty_p [lindex $params [expr $include_empty_p_pos + 1]]
+        set include_empty_p [lindex $params $include_empty_p_pos+1]
     }
 
     # The "include_empty_name" pops up as first line
@@ -52,7 +52,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     # [lang::message::lookup "" intranet-dynfield.no_value]
     set include_empty_name_pos [lsearch $params include_empty_name]
     if { $include_empty_name_pos >= 0 } {
-        set include_empty_name [lindex $params [expr $include_empty_name_pos + 1]]
+        set include_empty_name [lindex $params $include_empty_name_pos+1]
     }
 
 
@@ -145,7 +145,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     } else {
     	set sql_html "<select name=\"$element(name)\" id=\"$element(name)\" "
     		foreach name [array names attributes] {
-			if { [string equal $attributes($name) {}] } {
+			if {$attributes($name) eq {}} {
 				append sql_html " $name"
 			} else {
 				append sql_html " $name=\"$attributes($name)\""
@@ -153,7 +153,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
 		}
 		set i 0
 		while {$i < [llength $element(html)]} {
-			append sql_html " [lindex $element(html) $i]=\"[lindex $element(html) [expr $i + 1]]\""
+			append sql_html " [lindex $element(html) $i]=\"[lindex $element(html) $i+1]\""
 			incr i 2
     		}
     	append sql_html " >\n"

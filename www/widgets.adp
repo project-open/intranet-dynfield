@@ -1,7 +1,7 @@
 <master src="master">
-<property name="title">@page_title@</property>
-<property name="context">@context_bar@</property>
-<property name="left_navbar">@left_navbar_html;noquote@</property>
+<property name="doc(title)">@page_title;literal@</property>
+<property name="context">@context_bar;literal@</property>
+<property name="left_navbar">@left_navbar_html;literal@</property>
 
 
 <form action=widgets-delete method=post>
@@ -27,7 +27,7 @@
   </else>
   
     <td class="list-narrow">
-      <a href=widget-new?widget_id=@widgets.widget_id@>
+      <a href="widget-new?widget_id=@widgets.widget_id@">
 	@widgets.widget_name@
       </a>
     </td>
@@ -59,8 +59,8 @@
 
 <table width="100%">
   <tr>
-    <td colspan=99 align=right>
-      <input type=submit value="Delete Selected Widgets">
+    <td colspan="99" align="right">
+      <input type="submit" value="Delete Selected Widgets">
     </td>
   </tr>
 </table>
@@ -69,6 +69,6 @@
 
 
 <ul>
-<li><A href=widget-new>#intranet-dynfield.Create_a_new_Widget#</a>
+<li><A href="widget-new">#intranet-dynfield.Create_a_new_Widget#</a>
 </ul>
 

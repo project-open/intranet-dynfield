@@ -4,8 +4,8 @@
 %>
 <master src="master">
 
-<property name="title">@title@</property>
-<property name="context">@context@</property>
+<property name="doc(title)">@title;literal@</property>
+<property name="context">@context;literal@</property>
 
 <p>
 #intranet-dynfield.lt_This_is_the_list_of_a#

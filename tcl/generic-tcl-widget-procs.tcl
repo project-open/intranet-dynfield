@@ -35,14 +35,14 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
 
     set tcl_pos [lsearch $params tcl]
     if { $tcl_pos >= 0 } {
-    	set tcl_code [lindex $params [expr $tcl_pos + 1]]
+    	set tcl_code [lindex $params $tcl_pos+1]
     } else {
 	return "Generic tcl Widget: Error: Didn't find 'tcl' parameter"
     }
     
     set switch_pos [lsearch $params switch_p]
     if {$switch_pos >= 0} {
-	set switch_p [lindex $params [expr $switch_pos +1]]
+	set switch_p [lindex $params $switch_pos+1]
     } else {
 	set switch_p 0
     }
@@ -50,7 +50,7 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
     # Deal with global variables being pushed through
     set global_var_pos [lsearch $params global_var]
     if {$global_var_pos >= 0} {
-	set global_var_name [lindex $params [expr $global_var_pos +1]]
+	set global_var_name [lindex $params $global_var_pos+1]
 	set $global_var_name [set ::$global_var_name]
     }
     
@@ -59,13 +59,13 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
     set memoize_max_age [parameter::get_from_package_key -package_key intranet-dynfield -parameter GenericSQLWidgetMemoizeMaxAgeDefault -default 600]
     set memoize_max_age_pos [lsearch $params "memoize_max_age"]
     if { $memoize_max_age_pos >= 0 } {
-        set memoize_max_age [lindex $params [expr $memoize_max_age_pos + 1]]
+        set memoize_max_age [lindex $params $memoize_max_age_pos+1]
     }
     
     
     set switch_pos [lsearch $params switch_p]
     if {$switch_pos >= 0} {
-	set switch_p [lindex $params [expr $switch_pos +1]]
+	set switch_p [lindex $params $switch_pos+1]
     } else {
 	set switch_p 0
     }
@@ -73,14 +73,14 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
     # Deal with global variables being pushed through
     set global_var_pos [lsearch $params global_var]
     if {$global_var_pos >= 0} {
-	set global_var_name [lindex $params [expr $global_var_pos +1]]
+	set global_var_name [lindex $params $global_var_pos+1]
 	set $global_var_name [set ::$global_var_name]
 	ds_comment "$global_var_name [set $global_var_name]"
     }
     
     set memoize_pos [lsearch $params memoize_p]
     if {$memoize_pos >= 0} {
-	set memoize_p [lindex $params [expr $memoize_pos +1]]
+	set memoize_p [lindex $params $memoize_pos+1]
     } else {
 	set memoize_p 1
     }
@@ -90,7 +90,7 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
 	set memoize_max_age [parameter::get_from_package_key -package_key intranet-dynfield -parameter GenericSQLWidgetMemoizeMaxAgeDefault -default 600]
 	set memoize_max_age_pos [lsearch $params "memoize_max_age"]
 	if { $memoize_max_age_pos >= 0 } {
-	    set memoize_max_age [lindex $params [expr $memoize_max_age_pos + 1]]
+	    set memoize_max_age [lindex $params $memoize_max_age_pos+1]
 	}
     } 
 
@@ -98,7 +98,7 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
     set include_empty_p 1
     set include_empty_p_pos [lsearch $params include_empty_p]
     if { $include_empty_p_pos >= 0 } {
-        set include_empty_p [lindex $params [expr $include_empty_p_pos + 1]]
+        set include_empty_p [lindex $params $include_empty_p_pos+1]
     }
 
     # The "include_empty_name" pops up as first line
@@ -106,7 +106,7 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
     # [lang::message::lookup "" intranet-dynfield.no_value]
     set include_empty_name_pos [lsearch $params include_empty_name]
     if { $include_empty_name_pos >= 0 } {
-        set include_empty_name [lindex $params [expr $include_empty_name_pos + 1]]
+        set include_empty_name [lindex $params $include_empty_name_pos+1]
     }
 
     array set attributes $tag_attributes
@@ -166,7 +166,7 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
     } else {
 	set tcl_html "<select name=\"$element(name)\" id=\"$element(name)\" "
 	foreach name [array names attributes] {
-	    if { [string equal $attributes($name) {}] } {
+	    if {$attributes($name) eq {}} {
 		append tcl_html " $name"
 	    } else {
 		append tcl_html " $name=\"$attributes($name)\""
@@ -174,7 +174,7 @@ ad_proc -public template::widget::generic_tcl { element_reference tag_attributes
 	}
 	set i 0
 	while {$i < [llength $element(html)]} {
-	    append tcl_html " [lindex $element(html) $i]=\"[lindex $element(html) [expr $i + 1]]\""
+	    append tcl_html " [lindex $element(html) $i]=\"[lindex $element(html) $i+1]\""
 	    incr i 2
 	}
     	append tcl_html " >\n"

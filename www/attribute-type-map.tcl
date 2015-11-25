@@ -36,7 +36,7 @@ if {[info exists attribute_id] && "" != $attribute_id} {
 set bgcolor(0) " class=roweven "
 set bgcolor(1) " class=rowodd "
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set user_is_admin_p [im_is_user_site_wide_or_intranet_admin $user_id]
 if {!$user_is_admin_p} {
     ad_return_complaint 1 "You have insufficient privileges to use this page"
@@ -102,12 +102,12 @@ db_foreach top_scale_map "
 " { 
     set col_title ""
     foreach c $category {
-	if {[string length $c] == [expr $max_length+1]} { 
+	if {[string length $c] == [expr {$max_length+1}]} { 
 	    append col_title $c
             set c ""
 	}
 	while {[string length $c] > $max_length} {
-	    append col_title "[string range $c 0 [expr $max_length-1]] "
+	    append col_title "[string range $c 0 $max_length-1] "
 	    set c [string range $c $max_length end]
 	}
 	append col_title " $c "
@@ -199,7 +199,7 @@ set body_html ""
 set ctr 0
 foreach left $left_scale {
     set attribute_id $left
-    append body_html "<tr $bgcolor([expr $ctr % 2])>\n"
+    append body_html "<tr $bgcolor([expr {$ctr % 2}])>\n"
     append body_html "<td>$left_scale_map($left)</td>\n"
 
     foreach top $top_scale {
