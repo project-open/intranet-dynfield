@@ -2,7 +2,7 @@
 <property name="doc(title)">@page_title;literal@</property>
 <property name="context">#intranet-core.context#</property>
 <property name="main_navbar_label">admin</property>
-<property name="left_navbar">@left_navbar_html;literal@</property>
+<property name="left_navbar">@left_navbar_html;noquote@</property>
 
 <if @missing_dynfield_object_types@ ne "">
 <p><font color=red>
