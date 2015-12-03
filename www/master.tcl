@@ -12,6 +12,9 @@ set page_url [ad_conn url]
 set page_query [ad_conn query]
 
 if {![info exists left_navbar]} { set left_navbar "" }
+if {![info exists title] && [info exists doc(title)]} { set title $doc(title) }
+if {![info exists title] || "" eq $title} { set title "DynField" }
+
 
 set link_list [list]
 lappend link_list "${package_url}"
