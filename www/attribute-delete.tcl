@@ -1,7 +1,6 @@
 # packages/intranet-dynfield/www/attribute-delete.tcl
 
 ad_page_contract {
-
     Bulk delete attributes
 
     @author Frank Bergmann (frank.bergmann@project-open.com)
