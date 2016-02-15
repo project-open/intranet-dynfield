@@ -1418,7 +1418,7 @@ ad_proc -public im_dynfield::append_attribute_to_form {
     -attribute_name:required
     -pretty_name:required
     -help_text:required
-    -section_heading:required
+    {-section_heading ""}
     {-admin_html "" }
     {-debug 1}
 } {
