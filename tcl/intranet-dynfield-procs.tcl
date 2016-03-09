@@ -253,7 +253,7 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 } {
     This procedure generates a subquery SQL clause
     "(select object_id from ...)" that can be used
-    by a main query clause either as a "where xxx_id in ..."
+    by a main query clause either as a "where <*>_id in ..."
     or via a join in order to limit the number of object_ids
     to the ones that fit to the filter criteria.
 
