@@ -99,7 +99,7 @@ if { [form is_valid page_layout] } {
 	    }
 	} on_error {
 	    ad_return_complaint 1 "The page '$page_url' already contains the '$object_type' object type: <pre>$errmsg</pre>"
-	    ns_log warning "\[TCL\]dynfield/www/layout-page --------> $errmsg"
+	    ns_log Warning "\[TCL\]dynfield/www/layout-page --------> $errmsg"
 	    ad_script_abort
 	}
     } else {
