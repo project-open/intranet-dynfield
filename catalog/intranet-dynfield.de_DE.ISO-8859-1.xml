@@ -12,7 +12,7 @@
   <msg key="Attribute">Attribut</msg>
   <msg key="Attribute_Name">Attribut Name</msg>
   <msg key="Attribute_update">Attribut hochladen</msg>
-  <msg key="Attributes_in_page_url">Attribute in '%page_url%'</msg>
+  <msg key="Attributes_in_page_url">Attribute in &#39;%page_url%&#39;</msg>
   <msg key="Checkbox">Checkbox</msg>
   <msg key="Checkboxes">Checkboxen</msg>
   <msg key="Class">Klasse</msg>
@@ -26,8 +26,11 @@
   <msg key="Default_page">Standard Seite</msg>
   <msg key="Del">Del</msg>
   <msg key="Delete">Löschen</msg>
+  <msg key="DIV_Absolute">DIV Absolut</msg>
+  <msg key="DIV_Relative">DIV Relativ</msg>
   <msg key="Documentation">Dokumentation</msg>
   <msg key="documentation">Dokumentation</msg>
+  <msg key="DynField">DynField</msg>
   <msg key="Dynfield_Actions">Dynfield-Berechtigungen &amp;amp; Sichtbarkeit</msg>
   <msg key="DynField_Admin">DynField Administrieren</msg>
   <msg key="Dynfield_Attributes">Dynfield-Attribute</msg>
@@ -75,7 +78,7 @@
   <msg key="Object_ID">Objekt ID</msg>
   <msg key="Object_Name">Objekt Name</msg>
   <msg key="object_type_pretty_name_layout">%object_type_pretty_name% Layout</msg>
-  <msg key="Object_Types">Objekt Typen</msg>
+  <msg key="Object_Types">Objekttypen</msg>
   <msg key="One_Option_Allowed">Eine Option erlaubt</msg>
   <msg key="Parameters">Parameter</msg>
   <msg key="Party">Partei</msg>
@@ -89,7 +92,7 @@
   <msg key="Revise_your_attributes_id">These attributes were in your adp code but   they are not intranet-dynfield attributes:</msg>
   <msg key="Richtext">Richtext</msg>
   <msg key="Richtexts">Richtexts</msg>
-  <msg key="Section">'Sektion'</msg>
+  <msg key="Section">&#39;Sektion&#39;</msg>
   <msg key="Select">Auswählen</msg>
   <msg key="Selects">Auswählen</msg>
   <msg key="Set_as_the_default">Set als das default</msg>
@@ -99,7 +102,8 @@
   <msg key="Sport">Sport</msg>
   <msg key="Sport_Select">Sport</msg>
   <msg key="SQL_Datatype">SQL Datentyp</msg>
-  <msg key="Storage_Type">Lagerungs Typ</msg>
+  <msg key="Storage_Type">Speichertyp</msg>
+  <msg key="Table">Tabelle</msg>
   <msg key="Table_Name">Tabellen Name</msg>
   <msg key="Textarea">Textbereich</msg>
   <msg key="Textareas">Textbereiche</msg>
@@ -108,7 +112,7 @@
   <msg key="This_file_is_located_in">Dieser file ist eingerichtet im</msg>
   <msg key="This_file_will_be_placed_in">Dieser File wird abgestellt im</msg>
   <msg key="Url">Url</msg>
-  <msg key="Use_a_relative_url_as_example">Benutze eine relative  url als '/parties/person' (ohne file extension)</msg>
+  <msg key="Use_a_relative_url_as_example">Benutze eine relative  url als &#39;/parties/person&#39; (ohne file extension)</msg>
   <msg key="User">Benutzer</msg>
   <msg key="Widget_Examples">Widget Beispiele</msg>
   <msg key="Widget_Name">Widget Name</msg>
