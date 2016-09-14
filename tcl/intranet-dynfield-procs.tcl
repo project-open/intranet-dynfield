@@ -980,6 +980,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
     {-form_display_mode "edit" }
     {-advanced_filter_p 0}
     {-include_also_hard_coded_p 0 }
+    {-exclude_attributes {} }
     {-page_url "default" }
     {-debug 0}
 } {
@@ -1004,7 +1005,6 @@ ad_proc -public im_dynfield::append_attributes_to_form {
     <li>Extracting the values of the attributes from a number of storage tables.
     </ul>
 } {
-
     if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: object_type=$object_type, object_id=$object_id" }
     set user_id [ad_conn user_id]
     set return_url [im_url_with_query]
@@ -1162,6 +1162,7 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 			and a.attribute_id = aa.acs_attribute_id
 			and aa.widget_name = aw.widget_name
 			and aa.attribute_id in (select distinct attribute_id from im_dynfield_type_attribute_map)
+			and a.attribute_name not in ('[join $exclude_attributes "', '"]')
 			and $extra_where
 			$also_hard_coded_p_sql
 		) t
