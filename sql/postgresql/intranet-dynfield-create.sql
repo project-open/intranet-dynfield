@@ -23,7 +23,7 @@ update acs_object_types set type_category_type = 'Intranet Payment Type' where o
 update acs_object_types set type_category_type = 'Intranet Project Type' where object_type = 'im_project';
 update acs_object_types set type_category_type = 'Intranet Report Type' where object_type = 'im_report';
 update acs_object_types set type_category_type = 'Intranet Timesheet2 Conf Type' where object_type = 'im_timesheet_conf_object';
-update acs_object_types set type_category_type = 'Intranet Timesheet Task Type' where object_type = 'im_timesheet_task';
+update acs_object_types set type_category_type = 'Intranet Gantt Task Type' where object_type = 'im_timesheet_task';
 update acs_object_types set type_category_type = 'Intranet Topic Type' where object_type = 'im_forum_topic';
 update acs_object_types set type_category_type = 'Intranet User Type' where object_type = 'person';
 
@@ -1009,7 +1009,7 @@ SELECT im_menu__new (
 	null,							-- context_id
 	'intranet-dynfield',					-- package_name
 	'dynfield_otype_timesheet_task',			-- label
-	'Timesheet Task',					-- name
+	'Gantt Task',						-- name
 	'/intranet-dynfield/object-type?object_type=im_timesheet_task',	-- url
 	190,							-- sort_order
 	(select menu_id from im_menus where label = 'dynfield_otype'),	-- parent_menu_id

@@ -80,7 +80,7 @@ set top_scale [db_list top_dim "
 "]
 
 
-# Exception for timesheet tasks: Include the project_type_id=100 (Task)
+# Exception for Gantt tasks: Include the project_type_id=100 (Task)
 # ToDo: Remove once tasks have their own task_type_id.
 if {"im_timesheet_task" == $object_type} {
     lappend top_scale 100
