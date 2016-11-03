@@ -69,20 +69,19 @@ set table_header "
 \n"
 
 
-set group_list_sql {
+set group_list_sql "
 	select DISTINCT
 	        g.group_name,
 	        g.group_id,
 	        p.profile_gif
-	from
-	        acs_objects o,
+	from	acs_objects o,
 	        groups g,
 	        im_profiles p
-	where
-	        g.group_id = o.object_id
+	where	g.group_id = o.object_id
 	        and g.group_id = p.profile_id
 	        and o.object_type = 'im_profile'
-}
+		and g.group_id != [im_profile_po_admins]
+"
 
 set main_sql_select ""
 set num_groups 0
