@@ -226,6 +226,8 @@ create table im_dynfield_type_attribute_map (
 );
 
 
+
+
 comment on table im_dynfield_type_attribute_map is 'This table defines under which conditions an attribute is to be rendered. The condition is determined by the object_type_id, which is a category_id. This category_id is of the category_type which is defined as ''type_category_type'' for the object_type of the attribute. The object_type ''im_projects'' has a type_category_type in acs_object_types of ''Intranet Project Type'' which is the category_type (in im_categories) that contains all the category_ids which can be used to define conditions in the way of object_type_id.';
 comment on column im_dynfield_type_attribute_map.attribute_id is 'This is the dynfield_id from im_dynfield_attributes which identifies the attribute. It is NOT an attribute_id from acs_attributes.';
 comment on column im_dynfield_type_attribute_map.object_type_id is 'This is the conditions identifier. This identifier is object specific, so if we take Projects as an example again, the condition is defined by the object''s type_id. In the case of Projects, this is stored in im_projects.project_type_id (see acs_object_types.type_column for more). When an object (e.g. Project) is displayed, the system takes the project_type_id and looks up in type_attribute_map how the attributes for the object_type ''im_project'' are to be treated.';
@@ -1994,7 +1996,7 @@ select im_dynfield_widget__new (
 	'integer',				-- acs_datatype
 	'im_cost_center_tree',			-- widget
 	'integer',				-- sql_datatype
-	'{custom {start_cc_id ""} {department_only_p 0} {include_empty_p 1} {translate_p 0}}'
+	'{custom {start_cc_id "" department_only_p 0 include_empty_p 1 translate_p 0}}'
 );
 
 select im_dynfield_widget__new (
@@ -2280,43 +2282,46 @@ SELECT im_dynfield_widget__new (
 );
 
 
-SELECT im_dynfield_attribute_new ('im_company', 'company_name', 'Name', 'textbox_medium', 'string', 'f', 0, 't');
-SELECT im_dynfield_attribute_new ('im_company', 'company_path', 'Path', 'textbox_medium', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_company', 'main_office_id', 'Main Office', 'offices', 'integer', 'f', 20, 't');
-SELECT im_dynfield_attribute_new ('im_company', 'company_status_id', 'Status', 'category_company_status', 'integer', 'f', 30, 't');
-SELECT im_dynfield_attribute_new ('im_company', 'company_type_id', 'Type', 'category_company_type', 'integer', 'f', 40, 't');
+-- Add dynfields for companies
+SELECT im_dynfield_attribute_new ('im_company','company_name','Name', 'textbox_large','string','t',10,'t');
+SELECT im_dynfield_attribute_new ('im_company','company_path','Path', 'textbox_large','string','t',20,'t');
+SELECT im_dynfield_attribute_new ('im_company','company_status_id','Status','category_company_status','integer','t',30,'t');
+SELECT im_dynfield_attribute_new ('im_company','company_type_id','Type','category_company_type','integer','t',40,'t');
+SELECT im_dynfield_attribute_new ('im_company','referral_source','Referral','textbox_large','string','f',50,'t');
+SELECT im_dynfield_attribute_new ('im_company','vat_number','VAT Number','textbox_small','string','f',60,'t');
+SELECT im_dynfield_attribute_new ('im_company','default_vat','Default VAT','integer','string','f',100,'t');
+SELECT im_dynfield_attribute_new ('im_company','default_tax','Default TAX','integer','string','f',110,'t');
+SELECT im_dynfield_attribute_new ('im_company','note','Note', 'textarea_small','string','t',990,'t');
 
-SELECT im_dynfield_attribute_new ('im_project', 'project_name', 'Name', 'textbox_large', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_nr', 'Nr', 'textbox_medium', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_path', 'Path', 'textbox_medium', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'parent_id', 'Parent Project', 'parent_projects', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'company_id', 'Customer', 'customer_companies', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_type_id', 'Project Type', 'category_project_type', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_status_id', 'Project Status', 'category_project_status', 'string', 'f', 10, 't');
 
-SELECT im_dynfield_attribute_new ('im_project', 'description', 'Description', 'textarea_small', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'note', 'Note', 'textarea_small', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_lead_id', 'Project Manager', 'project_managers', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'supervisor_id', 'Project Sponsor', 'project_sponsors', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_budget', 'Budget', 'numeric', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'percent_completed', '% Done', 'numeric', 'string', 'f', 10, 't');
 
-SELECT im_dynfield_attribute_new ('im_project', 'on_track_status_id', 'On Track', 'category_project_on_track_status', 'string', 'f', 10, 't');
-SELECT im_dynfield_attribute_new ('im_project', 'project_budget_currency', 'Budget Currency', 'currencies', 'string', 'f', 10, 't');
-
--- SELECT im_dynfield_attribute_new ('im_project', 'project_budget_hours', 'Budget Hours', 'numeric', 'f', 10, 't');
--- SELECT im_dynfield_attribute_new ('im_project', 'end_date', 'End', 'date', 'f', 10, 't');
--- SELECT im_dynfield_attribute_new ('im_project', 'start_date', 'Start', 'date', 'string', 'f', 10, 't');
--- SELECT im_dynfield_attribute_new ('im_project', 'template_p', 'Template?', 'string', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'company_contact_id', 'Customer Contact', 'string', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'company_project_nr', 'Customer PO Number', 'string', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'confirm_date', 'Confirm Date', 'date', 'string', 'f', 10, 't');
--- SELECT im_dynfield_attribute_new ('im_project', 'release_item_p', 'Release Item?', 'string', 'f', 10, 't');
+-- SELECT im_dynfield_attribute_new ('im_project', 'end_date', 'End', 'date', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'milestone_p', 'Milestone?', 'string', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'presales_probability', 'Presales Probability', 'string', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'presales_value', 'Presales Value', 'string', 'f', 10, 't');
 -- SELECT im_dynfield_attribute_new ('im_project', 'program_id', 'Program', 'string', 'f', 10, 't');
-
+-- SELECT im_dynfield_attribute_new ('im_project', 'project_budget_hours', 'Budget Hours', 'float', 'f', 10, 't');
+-- SELECT im_dynfield_attribute_new ('im_project', 'project_priority_id', 'Project Priority', 'string', 'f', 10, 't');
+-- SELECT im_dynfield_attribute_new ('im_project', 'release_item_p', 'Release Item?', 'string', 'f', 10, 't');
+-- SELECT im_dynfield_attribute_new ('im_project', 'start_date', 'Start', 'date', 'string', 'f', 10, 't');
+-- SELECT im_dynfield_attribute_new ('im_project', 'template_p', 'Template?', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'company_id', 'Customer', 'customer_companies', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'description', 'Description', 'textarea_small', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'note', 'Note', 'textarea_small', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'on_track_status_id', 'On Track', 'category_project_on_track_status', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'parent_id', 'Parent Project', 'parent_projects', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'percent_completed', '% Done', 'float', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_budget', 'Budget', 'float', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_lead_id', 'Project Manager', 'project_managers', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_name', 'Name', 'textbox_large', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_nr', 'Nr', 'textbox_medium', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_path', 'Path', 'textbox_medium', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_status_id', 'Project Status', 'category_project_status', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'project_type_id', 'Project Type', 'category_project_type', 'string', 'f', 10, 't');
+SELECT im_dynfield_attribute_new ('im_project', 'supervisor_id', 'Project Sponsor', 'project_sponsors', 'string', 'f', 10, 't');
 
 
 -- Create DynFields for Presales Pipeline
@@ -2350,17 +2355,6 @@ SELECT im_dynfield_attribute_new ('person','first_names','First Names', 'textbox
 SELECT im_dynfield_attribute_new ('person','last_name','Last Names', 'textbox_large','string','t',20,'f');
 SELECT im_dynfield_attribute_new ('party','email','Email', 'textbox_large','string','t',30,'f');
 
-
--- Add dynfields for companies
-SELECT im_dynfield_attribute_new ('im_company','company_name','Name', 'textbox_large','string','t',10,'t');
-SELECT im_dynfield_attribute_new ('im_company','company_path','Path', 'textbox_large','string','t',20,'t');
-SELECT im_dynfield_attribute_new ('im_company','company_status_id','Status','category_company_status','integer','t',30,'t');
-SELECT im_dynfield_attribute_new ('im_company','company_type_id','Type','category_company_type','integer','t',40,'t');
-SELECT im_dynfield_attribute_new ('im_company','referral_source','Referral','textbox_large','string','f',50,'t');
-SELECT im_dynfield_attribute_new ('im_company','vat_number','VAT Number','textbox_small','string','f',60,'t');
-SELECT im_dynfield_attribute_new ('im_company','default_vat','Default VAT','integer','string','f',100,'t');
-SELECT im_dynfield_attribute_new ('im_company','default_tax','Default TAX','integer','string','f',110,'t');
-SELECT im_dynfield_attribute_new ('im_company','note','Note', 'textarea_small','string','t',990,'t');
 
 SELECT im_dynfield_attribute_new ('im_office','office_name','Office Name', 'textbox_large','string','t',10,'t');
 SELECT im_dynfield_attribute_new ('im_office','office_path','Office Path', 'textbox_large','string','t',20,'t');
@@ -2850,5 +2844,84 @@ drop function inline_0();
 UPDATE im_dynfield_widgets 
 SET parameters = '{format "YYYY-MM-DD"} {after_html {<input type="button" style="height:20px; width:20px; background: url(''/resources/acs-templating/calendar.gif'');" onclick ="return showCalendarWithDateWidget(''$attribute_name'', ''y-m-d'');" ></b>}}' 
 WHERE widget_name = 'date';
+
+
+
+update im_dynfield_widgets
+set pretty_name = 'Translation Languages',
+	pretty_plural = 'Translation Languages'
+where pretty_name = '#intranet-translation.Trans_Langs#';
+
+
+
+
+
+
+
+
+create or replace function inline_0 () 
+returns integer as $body$
+DECLARE
+	v_count		    integer;
+	row		    RECORD;
+BEGIN
+	-- Create a new DynField "page" for /intranet/projects/index:
+	select count(*) into v_count
+	from im_dynfield_layout_pages
+	where  page_url = '/intranet/projects/index';
+	IF 0 = v_count THEN
+		insert into im_dynfield_layout_pages (
+			page_url,
+			object_type,
+			layout_type
+		) values (
+			'/intranet/projects/index',
+			'im_project',
+			'table'
+		);
+	END IF;
+
+	-- Add all DynFields to the page
+	FOR row IN 
+		select distinct
+			dl.*
+		from
+			im_dynfield_layout_pages dlp,
+			im_dynfield_layout dl,
+			im_dynfield_attributes da,
+			acs_attributes aa
+		where
+			dlp.page_url = dl.page_url and
+			dl.attribute_id = da.attribute_id and
+			da.acs_attribute_id = aa.attribute_id and
+			dl.page_url = 'default' and
+			aa.object_type = 'im_project'
+	LOOP
+		select	count(*) into v_count
+		from	im_dynfield_layout
+		where	attribute_id = row.attribute_id and 
+			page_url = '/intranet/projects/index';
+
+		IF 0 = v_count THEN 
+			insert into im_dynfield_layout (
+				attribute_id, page_url,
+				pos_x, pos_y, size_x, size_y,
+				label_style, div_class, sort_key
+			) values (
+				row.attribute_id, '/intranet/projects/index',
+				row.pos_x, row.pos_y, row.size_x, row.size_y,
+				row.label_style, row.div_class, row.sort_key
+			);
+		END IF;
+
+	END LOOP;
+
+	RETURN 0;
+END;
+$body$ language 'plpgsql';
+select inline_0();
+drop function inline_0();
+
+
 
 
