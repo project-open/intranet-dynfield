@@ -414,6 +414,7 @@ create table im_dynfield_pages (
 	page_url		varchar(1000)
 				constraint im_dynfield_pages_nn
 				not null,
+				-- pages may be used as plug-in for WF:
 	workflow_key		varchar(100),
 				-- constraint im_dynfield_pages_workflow_key_fk
 				-- references wf_workflows,
@@ -437,7 +438,7 @@ create table im_dynfield_pages (
 );
 
 alter table im_dynfield_pages add constraint
-im_dynfield_layout_pages_un UNIQUE (object_type, page_url, workflow_key, transition_key);
+im_dynfield_layout_pages_un UNIQUE (object_type, coalesce(page_url, ''), coalesce(workflow_key, ''), coalesce(transition_key, ''));
 
 
 
