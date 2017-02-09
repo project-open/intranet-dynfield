@@ -437,8 +437,8 @@ create table im_dynfield_pages (
 				check (default_p in ( 't','f' ))
 );
 
-alter table im_dynfield_pages add constraint
-im_dynfield_layout_pages_un UNIQUE (object_type, coalesce(page_url, ''), coalesce(workflow_key, ''), coalesce(transition_key, ''));
+create unique index im_dynfield_layout_pages_un 
+on im_dynfield_pages (object_type, coalesce(page_url, ''), coalesce(workflow_key, ''), coalesce(transition_key, ''));
 
 
 
