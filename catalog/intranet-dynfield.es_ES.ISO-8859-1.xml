@@ -12,7 +12,7 @@
   <msg key="Attribute">Atributo</msg>
   <msg key="Attribute_Name">Nombre atributo</msg>
   <msg key="Attribute_update">Actualización de atributo</msg>
-  <msg key="Attributes_in_page_url">Atributos en '%page_url%'</msg>
+  <msg key="Attributes_in_page_url">Atributos en &#39;%page_url%&#39;</msg>
   <msg key="Checkbox">Casilla de verificación</msg>
   <msg key="Checkboxes">Casillas de verificación</msg>
   <msg key="Class">Clase</msg>
@@ -52,10 +52,10 @@
   <msg key="lt_Add_a_new_extension_t">Añadir una nueva tabla de extensiones</msg>
   <msg key="lt_Add_an_attribute_that">Añadir un atributo ya existente en la BD</msg>
   <msg key="lt_Category_Tree_Mainten">Mantenimiento de arbol de categorías</msg>
-  <msg key="lt_Extension_Tables_for_">Tablas de extensiones para &quot;%object_type_pretty_name%&quot;</msg>
+  <msg key="lt_Extension_Tables_for_">Tablas de extensiones para &#34;%object_type_pretty_name%&#34;</msg>
   <msg key="lt_Hint_Remember_that_yo">Nota: Recuerde que su formulario contiene %page.table_width% columnas, de forma que el campo en la posición %next_row% aparecerá en la segunda fila y así sucesivamente.</msg>
   <msg key="lt_If_you_dont_know_how_">Si desconoce cómo funcionan las etiquetas de formulario, lea primero el</msg>
-  <msg key="lt_Instances_of_object_t">Instancias del objeto &quot;%object_type_pretty_name%&quot;</msg>
+  <msg key="lt_Instances_of_object_t">Instancias del objeto &#34;%object_type_pretty_name%&#34;</msg>
   <msg key="lt_Remeber_to_also_add_the_core_attributes">No se olvide tampoco de añadir los atributos fundamentales.</msg>
   <msg key="lt_Sorry_there_are_no_us">Lo siento, actualmente no hay usuarios en el sistema. %users:rowcount%</msg>
   <msg key="lt_This_is_the_list_of_a">Esta es la lista de atributos (widgets) intranet-dynfield que puede utilizar en la página ADP:</msg>
@@ -86,7 +86,7 @@
   <msg key="Revise_your_attributes_id">Estos atributos están contenidos en su código ADP, pero no son atributos intranet-dynfield:</msg>
   <msg key="Richtext">Cuadro de texto WYSIWYG</msg>
   <msg key="Richtexts">Cuadros de texto WYSIWYG</msg>
-  <msg key="Section">'Sección'</msg>
+  <msg key="Section">&#39;Sección&#39;</msg>
   <msg key="Select">Cuadro de selección</msg>
   <msg key="Selects">Cuadros de selección</msg>
   <msg key="Set_as_the_default">Ajustar como predeterminado</msg>
@@ -105,7 +105,7 @@
   <msg key="This_file_is_located_in">Este archivo está ubicado en</msg>
   <msg key="This_file_will_be_placed_in">Este archivo será colocado en</msg>
   <msg key="Url">URL</msg>
-  <msg key="Use_a_relative_url_as_example">Utilice un URL relativo, p.ej. '/identidades/persona' (sin la extensión)</msg>
+  <msg key="Use_a_relative_url_as_example">Utilice un URL relativo, p.ej. &#39;/identidades/persona&#39; (sin la extensión)</msg>
   <msg key="User">Usuario</msg>
   <msg key="Widget_Examples">Ejemplos de widget</msg>
   <msg key="Widget_Name">Nombre de widget</msg>

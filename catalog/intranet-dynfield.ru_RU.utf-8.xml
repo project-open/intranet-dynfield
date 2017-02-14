@@ -12,7 +12,7 @@
   <msg key="Attribute">Атрибут</msg>
   <msg key="Attribute_Name">Название атрибута</msg>
   <msg key="Attribute_update">Обновление атрибута</msg>
-  <msg key="Attributes_in_page_url">Атрибуты в &quot;%page_url%&quot;</msg>
+  <msg key="Attributes_in_page_url">Атрибуты в &#34;%page_url%&#34;</msg>
   <msg key="Checkbox">Флажок</msg>
   <msg key="Checkboxes">Флажки</msg>
   <msg key="Class">Класс</msg>
@@ -49,10 +49,10 @@
   <msg key="lt_Add_a_new_extension_t">Добавить новую таблицу расширений</msg>
   <msg key="lt_Add_an_attribute_that">Добавить атрибут, уже существующий в БД</msg>
   <msg key="lt_Category_Tree_Mainten">Дерево категорий</msg>
-  <msg key="lt_Extension_Tables_for_">Таблица расширений для &quot;%object_type_pretty_name%&quot;</msg>
+  <msg key="lt_Extension_Tables_for_">Таблица расширений для &#34;%object_type_pretty_name%&#34;</msg>
   <msg key="lt_Hint_Remember_that_yo">Совет. Помните, что данная форма содержит %page.table_width% столбцов, поэтому поле в позиции %next_row% будет помещено во вторую строку и так далее.</msg>
   <msg key="lt_If_you_dont_know_how_">Если вы не знаете, как работают теги формы, сначала прочтите</msg>
-  <msg key="lt_Instances_of_object_t">Экземпляров &quot;%object_type_pretty_name%&quot;</msg>
+  <msg key="lt_Instances_of_object_t">Экземпляров &#34;%object_type_pretty_name%&#34;</msg>
   <msg key="lt_Remeber_to_also_add_the_core_attributes">Также не забудьте добавить основные атрибуты.</msg>
   <msg key="lt_Sorry_there_are_no_us">К сожалению, в данный момент в системе нет пользователей. %users:rowcount%</msg>
   <msg key="lt_This_is_the_list_of_a">Это список атрибутов (виджет) intranet-dynfield, которые можно использовать в ADP:</msg>
@@ -83,7 +83,7 @@
   <msg key="Revise_your_attributes_id">Эти атрибуты используются в коде ADP, но не являются атрибутами intranet-dynfield:</msg>
   <msg key="Richtext">Форматированный текст</msg>
   <msg key="Richtexts">Форматированные тексты</msg>
-  <msg key="Section">&quot;Раздел&quot;</msg>
+  <msg key="Section">&#34;Раздел&#34;</msg>
   <msg key="Select">Выбор</msg>
   <msg key="Selects">Выборы</msg>
   <msg key="Set_as_the_default">Использовать по умолчанию</msg>
@@ -102,7 +102,7 @@
   <msg key="This_file_is_located_in">Этот файл расположен в</msg>
   <msg key="This_file_will_be_placed_in">Этот файл будет расположен в</msg>
   <msg key="Url">URL-адрес</msg>
-  <msg key="Use_a_relative_url_as_example">Используйте относительный URL-адрес в формате &quot;/parties/person&quot; (без расширения)</msg>
+  <msg key="Use_a_relative_url_as_example">Используйте относительный URL-адрес в формате &#34;/parties/person&#34; (без расширения)</msg>
   <msg key="User">Пользователь</msg>
   <msg key="Widget_Examples">Примеры виджетов</msg>
   <msg key="Widget_Name">Название виджета</msg>

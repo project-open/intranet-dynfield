@@ -12,7 +12,7 @@
   <msg key="Attribute">Attribuut</msg>
   <msg key="Attribute_Name">Attribuut naam</msg>
   <msg key="Attribute_update">Attribuut update</msg>
-  <msg key="Attributes_in_page_url">Attributen in '%page_url%'</msg>
+  <msg key="Attributes_in_page_url">Attributen in &#39;%page_url%&#39;</msg>
   <msg key="Checkbox">Checkbox</msg>
   <msg key="Checkboxes">Checkboxen</msg>
   <msg key="Class">Klasse</msg>
@@ -52,10 +52,10 @@
   <msg key="lt_Add_a_new_extension_t">Toevoegen van een nieuwe uitbreidingstabel</msg>
   <msg key="lt_Add_an_attribute_that">Toevoegen van een attribuut dat al in de DB bestaat</msg>
   <msg key="lt_Category_Tree_Mainten">Categorie opbouw onderhoud</msg>
-  <msg key="lt_Extension_Tables_for_">Uitbreidingstabellen voor &quot;%object_type_pretty_name%&quot;</msg>
+  <msg key="lt_Extension_Tables_for_">Uitbreidingstabellen voor &#34;%object_type_pretty_name%&#34;</msg>
   <msg key="lt_Hint_Remember_that_yo">Tip: herinner dat uw formulier %page.table_width% kolommen heeft, zodat het veld in de volgende %next_row% positie wordt geplaatst op de 2e rij etc.</msg>
   <msg key="lt_If_you_dont_know_how_">Indien u niet weet hoe tags binnen formulieren worden gebruikt, moet u eerst lezen</msg>
-  <msg key="lt_Instances_of_object_t">Instanties van &quot;%object_type_pretty_name%&quot;</msg>
+  <msg key="lt_Instances_of_object_t">Instanties van &#34;%object_type_pretty_name%&#34;</msg>
   <msg key="lt_Remeber_to_also_add_the_core_attributes">Denk er aan ook de core attributen toe te voegen.</msg>
   <msg key="lt_Sorry_there_are_no_us">Sorry, er zijn geen momenteel geen gebruikers in het systeem. %users:rowcount%</msg>
   <msg key="lt_This_is_the_list_of_a">Dit is de lijst van intranet-dynveld attributen (widget) die u kunt gebruiken in de adp:</msg>
@@ -86,7 +86,7 @@
   <msg key="Revise_your_attributes_id">Deze attributen staan in uw adp code maar niet in intranet-dynveld attributen:</msg>
   <msg key="Richtext">Richtext</msg>
   <msg key="Richtexts">Richtexts</msg>
-  <msg key="Section">'Sectie'</msg>
+  <msg key="Section">&#39;Sectie&#39;</msg>
   <msg key="Select">Kies</msg>
   <msg key="Selects">Keuzes</msg>
   <msg key="Set_as_the_default">Maak standaard</msg>
@@ -105,7 +105,7 @@
   <msg key="This_file_is_located_in">Dit veld is geplaatst in</msg>
   <msg key="This_file_will_be_placed_in">Dit bestand wordt geplaatst in</msg>
   <msg key="Url">URL</msg>
-  <msg key="Use_a_relative_url_as_example">Gebruik een relatieve URL als '/parties/person' (zonder bestand extensie)</msg>
+  <msg key="Use_a_relative_url_as_example">Gebruik een relatieve URL als &#39;/parties/person&#39; (zonder bestand extensie)</msg>
   <msg key="User">Gebruiker</msg>
   <msg key="Widget_Examples">Widget voorbeeld</msg>
   <msg key="Widget_Name">Widget naam</msg>
