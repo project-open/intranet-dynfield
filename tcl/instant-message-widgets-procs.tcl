@@ -157,7 +157,7 @@ ad_proc -private template::util::skype::status {
 	set status $uri
     } else {
 	#Get user status
-	set status [ns_httpget $uri]
+	set status [im_httpget $uri]
     }
 
     return $status
