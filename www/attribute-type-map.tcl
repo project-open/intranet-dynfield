@@ -101,18 +101,20 @@ db_foreach top_scale_map "
 		category_id
 " { 
     set col_title ""
-    foreach c $category {
-	if {[string length $c] == [expr {$max_length+1}]} { 
-	    append col_title $c
-            set c ""
-	}
-	while {[string length $c] > $max_length} {
-	    append col_title "[string range $c 0 $max_length-1] "
-	    set c [string range $c $max_length end]
-	}
-	append col_title " $c "
-    }
-    set top_scale_map($category_id) $col_title
+    # KH: Not working - disabled 4now 
+    # foreach c $category {
+    #	if {[string length $c] == [expr {$max_length+1}]} { 
+    #	    append col_title $c
+    #        set c ""
+    #	}
+    #	while {[string length $c] > $max_length} {
+    #	    append col_title "[string range $c 0 $max_length-1] "
+    #	    set c [string range $c $max_length end]
+    #	}
+    #	append col_title " $c "
+    # }   
+    # set top_scale_map($category_id) $col_title
+    set top_scale_map($category_id) "&nbsp;$category&nbsp;"
 }
 
 
