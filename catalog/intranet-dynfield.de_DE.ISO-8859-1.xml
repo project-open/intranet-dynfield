@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <message_catalog package_key="intranet-dynfield" locale="de_DE" charset="ISO-8859-1">
 
+  <msg key="Absence">Abwesenheit</msg>
   <msg key="absolute">Absolut</msg>
   <msg key="ACS_Datatype">ACS Datentyp</msg>
   <msg key="Add_a_completely_new_attribute_modify_DB">Ein komplett neues Attribut hinzufügen (mdifiziere DB)</msg>
@@ -16,6 +17,8 @@
   <msg key="Checkbox">Checkbox</msg>
   <msg key="Checkboxes">Checkboxen</msg>
   <msg key="Class">Klasse</msg>
+  <msg key="Company">Firma</msg>
+  <msg key="Conf_Item">Conf Item</msg>
   <msg key="Content">Inhalt</msg>
   <msg key="Create_a_new_adp_file_for_this_form">Neue adp Akte für diese Form erstellen</msg>
   <msg key="Create_a_new_Widget">Neue Einheit erstellen</msg>
@@ -37,9 +40,13 @@
   <msg key="Dynfield_Layout">Dynfield-Layout</msg>
   <msg key="Edit_the_form_adp_file">Editiere die Form der adp Akte</msg>
   <msg key="Email_Address">E-Mail Adresse</msg>
+  <msg key="Event">Event</msg>
   <msg key="examples">Beispiele</msg>
+  <msg key="Expense">Ausgabe</msg>
+  <msg key="Expense_Bundle">Ausgabenpaket</msg>
   <msg key="Export">Intranet-Dynfield Informationen exportieren</msg>
   <msg key="Filter">Filter</msg>
+  <msg key="Gantt_Task">Gantt Aufgabe</msg>
   <msg key="Gender_Select">Geschlecht auswählen</msg>
   <msg key="Hide_interfaces">Versteckte Interfaces</msg>
   <msg key="ID_Column">ID Rubrik</msg>
@@ -48,6 +55,7 @@
   <msg key="Integer">ganze Zahl</msg>
   <msg key="Integers">ganze Zahlen</msg>
   <msg key="Intranet-Dynfield_Attributes">Intranet-Dynfield Attribute</msg>
+  <msg key="Invoice">Finanzdokument</msg>
   <msg key="Large">Groß</msg>
   <msg key="Layout_Manager">Layout Manager</msg>
   <msg key="Located">lokalisiert</msg>
@@ -64,6 +72,7 @@
   <msg key="lt_Sorry_there_are_no_us">Leider befinden sich zur Zeit keine Benutzer im System. %users:rowcount%
 </msg>
   <msg key="lt_This_is_the_list_of_a">This is the list of intranet-dynfield attributes(widget) you can use in the adp:</msg>
+  <msg key="Material">Material</msg>
   <msg key="Medium">Medium</msg>
   <msg key="Multiple_Options_Allowed">Multiple Options Allowed</msg>
   <msg key="Multiselect">Mehrauswahl</msg>
@@ -73,11 +82,13 @@
   <msg key="No_items">Keine Einträge</msg>
   <msg key="No_Spellcheck">Keine Rechtschreibprüfung</msg>
   <msg key="no_value">Kein Wert</msg>
+  <msg key="Note">Notiz</msg>
   <msg key="OACS_Widget">OACS Widget</msg>
   <msg key="Object_ID">Objekt ID</msg>
   <msg key="Object_Name">Objekt Name</msg>
   <msg key="object_type_pretty_name_layout">%object_type_pretty_name% Layout</msg>
   <msg key="Object_Types">Objekttypen</msg>
+  <msg key="Office">Firmensitz</msg>
   <msg key="One_Option_Allowed">Eine Option erlaubt</msg>
   <msg key="Parameters">Parameter</msg>
   <msg key="Party">Partei</msg>
@@ -85,12 +96,16 @@
   <msg key="Person">Person</msg>
   <msg key="Preferred_Communication">Begünstigte Kommunikation</msg>
   <msg key="Pretty_Name">Hübscher Name</msg>
+  <msg key="Project">Projekt</msg>
   <msg key="Radio">Radio</msg>
   <msg key="Radios">Radios</msg>
   <msg key="relative">Relativ</msg>
   <msg key="Revise_your_attributes_id">These attributes were in your adp code but   they are not intranet-dynfield attributes:</msg>
+  <msg key="RFQ">RFQ</msg>
+  <msg key="RFQ_Answer">RFQ Antwort</msg>
   <msg key="Richtext">Richtext</msg>
   <msg key="Richtexts">Richtexts</msg>
+  <msg key="Risk">Risiko</msg>
   <msg key="Section">&#39;Sektion&#39;</msg>
   <msg key="Select">Auswählen</msg>
   <msg key="Selects">Auswählen</msg>
@@ -110,6 +125,7 @@
   <msg key="Textboxes">Textboxen</msg>
   <msg key="This_file_is_located_in">Dieser file ist eingerichtet im</msg>
   <msg key="This_file_will_be_placed_in">Dieser File wird abgestellt im</msg>
+  <msg key="Ticket">Ticket</msg>
   <msg key="Url">Url</msg>
   <msg key="Use_a_relative_url_as_example">Benutze eine relative  url als &#39;/parties/person&#39; (ohne file extension)</msg>
   <msg key="User">Benutzer</msg>
