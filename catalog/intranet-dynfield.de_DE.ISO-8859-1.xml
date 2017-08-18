@@ -126,6 +126,7 @@
   <msg key="This_file_is_located_in">Dieser file ist eingerichtet im</msg>
   <msg key="This_file_will_be_placed_in">Dieser File wird abgestellt im</msg>
   <msg key="Ticket">Ticket</msg>
+  <msg key="Unmapped_Attributes">Unmapped Attributes</msg>
   <msg key="Url">Url</msg>
   <msg key="Use_a_relative_url_as_example">Benutze eine relative  url als &#39;/parties/person&#39; (ohne file extension)</msg>
   <msg key="User">Benutzer</msg>
