@@ -11,7 +11,7 @@
   <msg key="Adp_file">Adp Aktenname</msg>
   <msg key="and_look_at_the">und schaue auf das</msg>
   <msg key="Attribute">Attribut</msg>
-  <msg key="Attribute_Name">Attribut Name</msg>
+  <msg key="Attribute_Name">Attribut-Name</msg>
   <msg key="Attribute_update">Attribut hochladen</msg>
   <msg key="Attributes_in_page_url">Attribute in &#39;%page_url%&#39;</msg>
   <msg key="Checkbox">Checkbox</msg>
@@ -26,7 +26,7 @@
   <msg key="dbi_headers">Dbi Schlussstein</msg>
   <msg key="dbi_inserts">Dbi Beilagen</msg>
   <msg key="dbi_interfaces">DBI Interfaces</msg>
-  <msg key="Default_page">Standard Seite</msg>
+  <msg key="Default_page">Standardseite</msg>
   <msg key="Del">Del</msg>
   <msg key="Delete">Löschen</msg>
   <msg key="DIV_Absolute">DIV Absolut</msg>
@@ -46,10 +46,10 @@
   <msg key="Expense_Bundle">Ausgabenpaket</msg>
   <msg key="Export">Intranet-Dynfield Informationen exportieren</msg>
   <msg key="Filter">Filter</msg>
-  <msg key="Gantt_Task">Gantt Aufgabe</msg>
+  <msg key="Gantt_Task">Gantt-Aufgabe</msg>
   <msg key="Gender_Select">Geschlecht auswählen</msg>
   <msg key="Hide_interfaces">Versteckte Interfaces</msg>
-  <msg key="ID_Column">ID Rubrik</msg>
+  <msg key="ID_Column">ID-Rubrik</msg>
   <msg key="Import">Intranet-Dynfield Informationen importieren</msg>
   <msg key="in_Table">in Tabelle</msg>
   <msg key="Integer">ganze Zahl</msg>
@@ -57,12 +57,12 @@
   <msg key="Intranet-Dynfield_Attributes">Intranet-Dynfield Attribute</msg>
   <msg key="Invoice">Finanzdokument</msg>
   <msg key="Large">Groß</msg>
-  <msg key="Layout_Manager">Layout Manager</msg>
-  <msg key="Located">lokalisiert</msg>
+  <msg key="Layout_Manager">Layout-Manager</msg>
+  <msg key="Located">Lokalisiert</msg>
   <msg key="Lottery_Supplier_Code">Lotterielieferant Code</msg>
   <msg key="lt_Add_a_completely_new_">Ein völlig neues Attribut hinzufügen</msg>
   <msg key="lt_Add_a_new_extension_t">Eine neue Erweiterungstabelle hinzufügen</msg>
-  <msg key="lt_Add_an_attribute_that">Ein Attribut hinzufügen das bereits in der Datenbank existiert</msg>
+  <msg key="lt_Add_an_attribute_that">Ein Attribut hinzufügen, das bereits in der Datenbank existiert</msg>
   <msg key="lt_Category_Tree_Mainten">Bauminstandhaltungskategorie</msg>
   <msg key="lt_Extension_Tables_for_">Erweiterungstabellen für &amp;quot;%object_type_pretty_name%&amp;quot;</msg>
   <msg key="lt_Hint_Remember_that_yo">Tipp: Denken Sie daran, dass ihr Formular %page.table_width% Spalten hat, so dass das Feld in der %next_row% Position in die zweite Reihe platziert wird und so weiter.  </msg>
@@ -102,7 +102,7 @@
   <msg key="relative">Relativ</msg>
   <msg key="Revise_your_attributes_id">These attributes were in your adp code but   they are not intranet-dynfield attributes:</msg>
   <msg key="RFQ">RFQ</msg>
-  <msg key="RFQ_Answer">RFQ Antwort</msg>
+  <msg key="RFQ_Answer">RFQ-Antwort</msg>
   <msg key="Richtext">Richtext</msg>
   <msg key="Richtexts">Richtexts</msg>
   <msg key="Risk">Risiko</msg>
@@ -118,7 +118,7 @@
   <msg key="SQL_Datatype">SQL Datentyp</msg>
   <msg key="Storage_Type">Speichertyp</msg>
   <msg key="Table">Tabelle</msg>
-  <msg key="Table_Name">Tabellen Name</msg>
+  <msg key="Table_Name">Tabellen-Name</msg>
   <msg key="Textarea">Textbereich</msg>
   <msg key="Textareas">Textbereiche</msg>
   <msg key="Textbox">Textbox</msg>
@@ -130,7 +130,7 @@
   <msg key="Url">Url</msg>
   <msg key="Use_a_relative_url_as_example">Benutze eine relative  url als &#39;/parties/person&#39; (ohne file extension)</msg>
   <msg key="User">Benutzer</msg>
-  <msg key="Widget_Examples">Widget Beispiele</msg>
+  <msg key="Widget_Examples">Widget-Beispiele</msg>
   <msg key="Widget_Name">Widget Name</msg>
   <msg key="Widgets">Widgets</msg>
   <msg key="xml_file_widget_label">Bitte wählen Sie die .xml Datei, welche die Intranet-dynfield Daten enthält</msg>
