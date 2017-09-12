@@ -18,7 +18,7 @@
   <msg key="Checkboxes">Checkboxen</msg>
   <msg key="Class">Klasse</msg>
   <msg key="Company">Firma</msg>
-  <msg key="Conf_Item">Conf Item</msg>
+  <msg key="Conf_Item">Konfigurationselement</msg>
   <msg key="Content">Inhalt</msg>
   <msg key="Create_a_new_adp_file_for_this_form">Neue adp Akte für diese Form erstellen</msg>
   <msg key="Create_a_new_Widget">Neue Einheit erstellen</msg>
@@ -95,7 +95,7 @@
   <msg key="Permissions">Genehmigungen</msg>
   <msg key="Person">Person</msg>
   <msg key="Preferred_Communication">Begünstigte Kommunikation</msg>
-  <msg key="Pretty_Name">Hübscher Name</msg>
+  <msg key="Pretty_Name">Voller Name</msg>
   <msg key="Project">Projekt</msg>
   <msg key="Radio">Radio</msg>
   <msg key="Radios">Radios</msg>
