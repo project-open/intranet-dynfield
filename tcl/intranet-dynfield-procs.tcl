@@ -1421,7 +1421,7 @@ ad_proc -public im_dynfield::append_attribute_to_form {
     -help_text:required
     {-section_heading ""}
     {-admin_html "" }
-    {-debug 1}
+    {-debug 0}
 } {
     Append a single attribute to a form
 } {
