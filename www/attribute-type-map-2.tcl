@@ -1,6 +1,6 @@
 ad_page_contract {
     Set the display mode for the specific acs_object_type.
-    Takes an arrray (all the radio-buttons from the page),
+    Takes an array (all the radio-buttons from the page),
     compares it with the currently configured settings and
     changes those settings that are different.
     
