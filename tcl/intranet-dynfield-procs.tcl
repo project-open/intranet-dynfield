@@ -733,14 +733,16 @@ ad_proc -public im_dynfield::attribute_store {
 # ------------------------------------------------------------------
 
 ad_proc -public im_dynfield::dynfields_per_object_subtype {
+    { -parent_category_id "" }
     -object_type:required
 } {
     Returns the list of dynfield_attributes for each subtype
 } {
-    return [util_memoize [list im_dynfield::dynfields_per_object_subtype_helper -object_type $object_type]]
+    return [util_memoize [list im_dynfield::dynfields_per_object_subtype_helper -parent_category_id $parent_category_id -object_type $object_type]]
 }
 
 ad_proc -public im_dynfield::dynfields_per_object_subtype_helper {
+    { -parent_category_id "" }
     -object_type:required
 } {
     Returns the list of dynfield_attributes that are common to all 
@@ -764,8 +766,13 @@ ad_proc -public im_dynfield::dynfields_per_object_subtype_helper {
 			where	display_mode in ('edit','display')
 		) m on (cat.category_id = m.object_type_id)
     "
+    if {"" ne $parent_category_id} {
+	append mapping_sql "\t\tand cat.category_id in ([join [im_sub_categories $parent_category_id] ","])"
+    }
+
     db_foreach dynfield_mapping $mapping_sql {
-        if {0 == $attribute_id} { continue }
+        if {0 eq $attribute_id || "" eq $attribute_id} { continue }
+        if {0 eq $type_id || "" eq $type_id} { continue }
     	set attribs [list]
 	if {[info exists attrib_hash($type_id)]} { set attribs $attrib_hash($type_id) }
 	lappend attribs $attribute_id
@@ -776,13 +783,14 @@ ad_proc -public im_dynfield::dynfields_per_object_subtype_helper {
 
 
 ad_proc -public im_dynfield::subtype_have_same_attributes_p {
+    { -parent_category_id "" }
     -object_type:required
 } {
     Returns "1" if all object subtypes have the same list of dynfields.
     This routine is useful if we want to know if we have to redirect
     to the big-object-type-select page to select an object's subtype.
 } {
-    array set attrib_hash [im_dynfield::dynfields_per_object_subtype -object_type $object_type]
+    array set attrib_hash [im_dynfield::dynfields_per_object_subtype -parent_category_id $parent_category_id -object_type $object_type]
     set first_array_name [lindex [array names attrib_hash] 0]
 
     if {"" == $first_array_name} { 
