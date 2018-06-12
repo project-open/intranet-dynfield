@@ -9,14 +9,14 @@
 <table class="list">
 
   <tr class="list-header">
-    <th class="list-narrow">#intranet-dynfield.Name#</th>
-    <th class="list-narrow">#intranet-dynfield.Pretty_Name#</th>
-    <th class="list-narrow">#intranet-dynfield.Storage_Type#</th>
-    <th class="list-narrow">#intranet-dynfield.ACS_Datatype#</th>
-    <th class="list-narrow">#intranet-dynfield.SQL_Datatype#</th>
-    <th class="list-narrow">#intranet-dynfield.OACS_Widget#</th>
-    <th class="list-narrow">#intranet-dynfield.Parameters#</th>
     <th class="list-narrow">#intranet-dynfield.Del#</th>
+    <th class="list-narrow">#intranet-dynfield.Name# /<br>
+       #intranet-dynfield.Pretty_Name#</th>
+<!--    <th class="list-narrow">#intranet-dynfield.Storage_Type#</th> -->
+    <th class="list-narrow">#intranet-dynfield.ACS_Datatype# /<br>#intranet-dynfield.SQL_Datatype#</th>
+    <th class="list-narrow">#intranet-dynfield.OACS_Widget# /<br>
+        <%= [lang::message::lookup "" intranet-dynfield.Deref_Function "Deref Function"] %></th>
+    <th class="list-narrow">#intranet-dynfield.Parameters#</th>
   </tr>
 
   <multiple name=widgets>
@@ -27,30 +27,24 @@
   </else>
   
     <td class="list-narrow">
+	<input type="checkbox" name="widget_id.@widgets.widget_id@">
+    </td>
+    <td class="list-narrow">
       <a href="widget-new?widget_id=@widgets.widget_id@">
 	@widgets.widget_name@
-      </a>
-    </td>
-    <td class="list-narrow">
+      </a> /<br>
 	@widgets.pretty_name@
     </td>
+<!--    <td class="list-narrow">@widgets.storage_type@</td> -->
     <td class="list-narrow">
-	@widgets.storage_type@
+	@widgets.acs_datatype@ /<br>@widgets.sql_datatype@
     </td>
     <td class="list-narrow">
-	@widgets.acs_datatype@
-    </td>
-    <td class="list-narrow">
-	@widgets.sql_datatype@
-    </td>
-    <td class="list-narrow">
-	@widgets.widget@
+	@widgets.widget@ /<br>
+	@widgets.deref_plpgsql_function@
     </td>
     <td class="list-narrow">
 	@widgets.parameters@
-    </td>
-    <td class="list-narrow">
-	<input type="checkbox" name="widget_id.@widgets.widget_id@">
     </td>
 
   </tr>
