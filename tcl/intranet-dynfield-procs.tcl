@@ -306,13 +306,18 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		and a.attribute_id = aa.acs_attribute_id
 		and a.attribute_id = at.attribute_id
 		and aa.widget_name = dw.widget_name
-		and (aa.also_hard_coded_p is NULL or aa.also_hard_coded_p = 'f')
 		and ott.object_type = at.object_type
 		and ott.table_name = at.table_name
 		and a.attribute_name not in ('[join $exclude_attributes "','"]')
 	order by
 		attribute_id
     "
+
+# fraber 2018-08-22:
+# Now allowing to check for hard_coded fields like project_nr etc.
+# -- and (aa.also_hard_coded_p is NULL or aa.also_hard_coded_p = 'f')
+# This should not cause any trouble, because at the end we'll check
+# for the attributes coming from the filter.
 
     set ext_table_sql "
 	select distinct
@@ -334,7 +339,7 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
     set bind_vars [ns_set create]
     set criteria [list]
     db_foreach attributes $attributes_sql {
-	
+
 	# Check whether the attribute is part of the form
 	if {[lsearch $form_elements $attribute_name] >= 0} {
 	    set value [template::element::get_value $form_id $attribute_name]
@@ -351,7 +356,10 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		text - textarea - richtext {
 		    # Create a "like" search
 		    # lappend criteria "$attribute_table_name.$attribute_name like '%:$attribute_name%'"
-		    lappend criteria "lower($attribute_table_name.$attribute_name) like '%\[string tolower \[string map {' {} \] {} \[ {} \$ {}} \[im_opt_val $attribute_name\]\]\]%'"
+		    # lappend criteria "lower($attribute_table_name.$attribute_name) like '%\[string tolower \[string map {' {} \] {} \[ {} \$ {}} \[im_opt_val $attribute_name\]\]\]%'"
+
+		    lappend criteria "lower($attribute_table_name.$attribute_name) like '%'||:${attribute_name}||'%'"
+
 		}
 		date {
 		    # Not supported yet
@@ -368,6 +376,9 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		    if { "t" == $value } {
                                 lappend criteria "($attribute_table_name.$attribute_name = '1' OR $attribute_table_name.$attribute_name = 't')"
 		    }
+		}
+		im_category_tree {
+		    lappend criteria "$attribute_table_name.$attribute_name in (select * from im_sub_categories(:$attribute_name))"
 		}
 		default {
 		    lappend criteria "$attribute_table_name.$attribute_name = :$attribute_name"
