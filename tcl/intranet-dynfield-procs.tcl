@@ -547,6 +547,7 @@ ad_proc -public im_dynfield::set_local_form_vars_from_http {
 
 
 ad_proc -public im_dynfield::attribute_store {
+    {-include_also_hard_coded_p 0 }
     {-object_type ""}
     -object_id:required
     -form_id:required
@@ -631,7 +632,7 @@ ad_proc -public im_dynfield::attribute_store {
 		and aa.object_type = :object_type_org
 		and da.widget_name = dw.widget_name
 		and 't' = acs_permission__permission_p(da.attribute_id, :current_user_id, 'write')
-		and (also_hard_coded_p is NULL or also_hard_coded_p != 't')
+		and (also_hard_coded_p is NULL or also_hard_coded_p != 't' or 1 = :include_also_hard_coded_p)
 	order by aa.attribute_name
     "
 
