@@ -1189,12 +1189,10 @@ ad_proc -public im_dynfield::append_attributes_to_form {
 	order by
 		pos_y_coalesce
     "
-
+#    ad_return_complaint 1 [im_ad_hoc_query -format html $attributes_sql]
 
     set field_cnt 0
-
     if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: Now looping through attributes and evaluate show mode" }
-
     db_foreach attributes $attributes_sql {
 
 	if {$debug} { ns_log Notice "im_dynfield::append_attributes_to_form: ***** Evaluating attribute name: $attribute_name" }
