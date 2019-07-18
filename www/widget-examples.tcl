@@ -107,7 +107,7 @@ template::multirow foreach widgets {
     # There is a bug with the widget:
     if {"project_parent_options" == $widget_name} { continue }
 
-    ns_log Notice "widget-examples: widget_name=$widget_name"
+    ns_log Notice "widget-examples: widget=$widget, widget_name=$widget_name, acs_datatype=$acs_datatype, parameters=$parameters"
     im_dynfield::append_attribute_to_form \
 	-widget $widget \
 	-form_id widgets_form \
