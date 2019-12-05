@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="intranet-dynfield" locale="zh_TW" charset="utf-8">
+
+  <msg key="Documentation">文檔</msg>
+  <msg key="Object_Types">對象類型</msg>
+  <msg key="Permissions">權限</msg>
+  <msg key="Widget_Examples">構件範例</msg>
+  <msg key="Widgets">構件</msg>
+</message_catalog>

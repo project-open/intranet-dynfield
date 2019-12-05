@@ -11,6 +11,7 @@
 <table class="list">
 
   <tr class="list-header">
+    <th class="list-narrow">#intranet-dynfield.Del#</th>
     <th class="list-narrow">#intranet-dynfield.Attribute_Name#</th>
     <th class="list-narrow">#intranet-dynfield.Pretty_Name#</th>
     <th class="list-narrow">#intranet-dynfield.Located# <br>#intranet-dynfield.in_Table#</th>
@@ -19,7 +20,6 @@
     <th class="list-narrow">Table<br>Type</th>
     <th class="list-narrow">Y-Pos</th>
     <th class="list-narrow">Also<br>Hard<br>Coded</th>
-    <th class="list-narrow">#intranet-dynfield.Del#</th>
   </tr>
 
   <multiple name=attributes>
@@ -28,7 +28,9 @@
   </if> <else>
     <tr class="list-even">
   </else>
-
+    <td class="list-narrow">
+	<input type="checkbox" name="attribute_ids" value="@attributes.im_dynfield_attribute_id@">
+    </td>
     <td class="list-narrow">
 	<a href="attribute-new?attribute_id=@attributes.im_dynfield_attribute_id@">
 	  @attributes.attribute_name@
@@ -57,24 +59,20 @@
     <td class="list-narrow">
 	@attributes.also_hard_coded_p@
     </td>
-    <td class="list-narrow">
-	<input type="checkbox" name="attribute_ids" value="@attributes.im_dynfield_attribute_id@">
-    </td>
-
   </tr>
   </multiple>
 
   <tr valign="top">
+    <td align="left">
+      <input type="submit" value="Del">
+    </td>
+   </tr>
+   <tr>
     <td colspan="8" align="left">
-
 <ul>
 <li><a href="attribute-new?form_mode=edit&amp;object_type=@object_type@&action=completely_new">#intranet-dynfield.lt_Add_a_completely_new_#</a></li>
 <li><a href="attribute-new?form_mode=edit&amp;object_type=@object_type@&action=already_existing">#intranet-dynfield.lt_Add_an_attribute_that#</a></li>
 </ul>
-
-    </td>
-    <td align="right">
-      <input type="submit" value="Del">
     </td>
   </tr>
 </table>
