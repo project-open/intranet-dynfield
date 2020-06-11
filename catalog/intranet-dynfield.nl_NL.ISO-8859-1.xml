@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <message_catalog package_key="intranet-dynfield" locale="nl_NL" charset="ISO-8859-1">
 
+  <msg key="Absence">Afwezigheid</msg>
   <msg key="absolute">Absoluut</msg>
   <msg key="ACS_Datatype">ACS datatype</msg>
   <msg key="Add_a_completely_new_attribute_modify_DB">Toevoegen van een compleet nieuw attribuut (wijzigen DB)</msg>
@@ -16,6 +17,8 @@
   <msg key="Checkbox">Checkbox</msg>
   <msg key="Checkboxes">Checkboxen</msg>
   <msg key="Class">Klasse</msg>
+  <msg key="Company">Bedrijf</msg>
+  <msg key="Conf_Item">Conf Item</msg>
   <msg key="Content">Inhoud</msg>
   <msg key="Create_a_new_adp_file_for_this_form">Maak een nieuw adp bestand voor dit forum</msg>
   <msg key="Create_a_new_Widget">Maak een nieuw widget</msg>
@@ -26,15 +29,24 @@
   <msg key="Default_page">Standaard pagina</msg>
   <msg key="Del">Verwijderden</msg>
   <msg key="Delete">Verwijderen</msg>
+  <msg key="DIV_Absolute">DIV Absoluut</msg>
+  <msg key="DIV_Relative">DIV Relatief</msg>
   <msg key="Documentation">Documentatie</msg>
   <msg key="documentation">documentatie</msg>
+  <msg key="DynField">DynField</msg>
   <msg key="Dynfield_Actions">Dynveld rechten &amp; zichtbaarheid</msg>
+  <msg key="DynField_Admin">DynField Admin</msg>
   <msg key="Dynfield_Attributes">Dynveld attributen</msg>
   <msg key="Dynfield_Layout">Dynveld opbouw</msg>
   <msg key="Edit_the_form_adp_file">Bewerk het formulier adp bestand</msg>
   <msg key="Email_Address">Email adres</msg>
+  <msg key="Event">Gebeurtenis</msg>
   <msg key="examples">voorbeelden</msg>
+  <msg key="Expense">Onkosten</msg>
+  <msg key="Expense_Bundle">Onkosten bundel</msg>
   <msg key="Export">Expoteren Intranet-dynveld informatie</msg>
+  <msg key="Filter">Filter</msg>
+  <msg key="Gantt_Task">Gantt taak</msg>
   <msg key="Gender_Select">Geslacht selectie</msg>
   <msg key="Hide_interfaces">Verberg interfaces</msg>
   <msg key="ID_Column">ID kolom</msg>
@@ -43,6 +55,7 @@
   <msg key="Integer">Integer</msg>
   <msg key="Integers">Integers</msg>
   <msg key="Intranet-Dynfield_Attributes">Intranet-dynveld attributen</msg>
+  <msg key="Invoice">Financieel document</msg>
   <msg key="Large">Groot</msg>
   <msg key="Layout_Manager">Opbouw manager</msg>
   <msg key="Located">Gelokaliseerd</msg>
@@ -58,6 +71,7 @@
   <msg key="lt_Remeber_to_also_add_the_core_attributes">Denk er aan ook de core attributen toe te voegen.</msg>
   <msg key="lt_Sorry_there_are_no_us">Sorry, er zijn geen momenteel geen gebruikers in het systeem. %users:rowcount%</msg>
   <msg key="lt_This_is_the_list_of_a">Dit is de lijst van intranet-dynveld attributen (widget) die u kunt gebruiken in de adp:</msg>
+  <msg key="Material">Materiaal</msg>
   <msg key="Medium">Gemiddeld</msg>
   <msg key="Multiple_Options_Allowed">Meerdere opties zijn toegestaan</msg>
   <msg key="Multiselect">Multiselect</msg>
@@ -67,11 +81,13 @@
   <msg key="No_items">Geen items</msg>
   <msg key="No_Spellcheck">Geen spellingschecker</msg>
   <msg key="no_value">Geen waarde</msg>
+  <msg key="Note">Notitie</msg>
   <msg key="OACS_Widget">OACS widget</msg>
   <msg key="Object_ID">Object ID</msg>
   <msg key="Object_Name">Object naam</msg>
   <msg key="object_type_pretty_name_layout">%object_type_pretty_name% layout</msg>
   <msg key="Object_Types">Object typen</msg>
+  <msg key="Office">Kantoor</msg>
   <msg key="One_Option_Allowed">Een optie toegestaan</msg>
   <msg key="Parameters">Parameters</msg>
   <msg key="Party">Party</msg>
@@ -79,12 +95,16 @@
   <msg key="Person">Persoon</msg>
   <msg key="Preferred_Communication">Voorkeur communicatie</msg>
   <msg key="Pretty_Name">Mooie naam</msg>
+  <msg key="Project">Project</msg>
   <msg key="Radio">Radio</msg>
   <msg key="Radios">Radios</msg>
   <msg key="relative">Relatief</msg>
   <msg key="Revise_your_attributes_id">Deze attributen staan in uw adp code maar niet in intranet-dynveld attributen:</msg>
+  <msg key="RFQ">RFQ</msg>
+  <msg key="RFQ_Answer">RFQ Antwoord</msg>
   <msg key="Richtext">Richtext</msg>
   <msg key="Richtexts">Richtexts</msg>
+  <msg key="Risk">Risico</msg>
   <msg key="Section">&#39;Sectie&#39;</msg>
   <msg key="Select">Kies</msg>
   <msg key="Selects">Keuzes</msg>
@@ -96,6 +116,7 @@
   <msg key="Sport_Select">Sport</msg>
   <msg key="SQL_Datatype">SQL Datatype</msg>
   <msg key="Storage_Type">Opslag type</msg>
+  <msg key="Table">Tabel</msg>
   <msg key="Table_Name">Tabelnaam</msg>
   <msg key="Textarea">Tekst gebied</msg>
   <msg key="Textareas">Tekst gebieden</msg>
@@ -103,6 +124,8 @@
   <msg key="Textboxes">Tekstboxen</msg>
   <msg key="This_file_is_located_in">Dit veld is geplaatst in</msg>
   <msg key="This_file_will_be_placed_in">Dit bestand wordt geplaatst in</msg>
+  <msg key="Ticket">Ticket</msg>
+  <msg key="Unmapped_Attributes">Niet in kaart gebrachte attributen</msg>
   <msg key="Url">URL</msg>
   <msg key="Use_a_relative_url_as_example">Gebruik een relatieve URL als &#39;/parties/person&#39; (zonder bestand extensie)</msg>
   <msg key="User">Gebruiker</msg>
