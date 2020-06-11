@@ -500,12 +500,11 @@ ad_proc -public im_dynfield::set_form_values_from_http {
     }
 
     foreach element $form_elements {
-
 	# Only set the values for variables that are found in the
 	# HTTP variable frame to avoid ambiguities
 	set pos [ns_set find $form_vars $element]
 	if {$pos >= 0} {
-	   set value [ns_set get $form_vars $element]
+	   set value [im_opt_val -limit_to $element]
 	   template::element::set_value $form_id $element $value
 	}
     }
@@ -535,7 +534,7 @@ ad_proc -public im_dynfield::set_local_form_vars_from_http {
 	# HTTP variable frame to avoid ambiguities
 	set pos [ns_set find $form_vars $element]
 	if {$pos >= 0} {
-	   set value [ns_set get $form_vars $element]
+	   set value [im_opt_val -limit_to nohtml $element]
 
 	   # Write the values to the calling stack frame
 	   upvar $element $element

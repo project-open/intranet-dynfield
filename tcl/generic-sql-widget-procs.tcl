@@ -84,7 +84,7 @@ ad_proc -public template::widget::generic_sql { element_reference tag_attributes
     set substitution_hash(user_id) [ad_conn user_id]
     set form_vars [ns_conn form]
     foreach form_var [ad_ns_set_keys $form_vars] {
-	set form_val [ns_set get $form_vars $form_var]
+	set form_val [im_opt_val -limit_to nohtml $form_var]
 	set substitution_hash($form_var) $form_val
     }
 
