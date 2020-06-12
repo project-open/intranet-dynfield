@@ -504,7 +504,7 @@ ad_proc -public im_dynfield::set_form_values_from_http {
 	# HTTP variable frame to avoid ambiguities
 	set pos [ns_set find $form_vars $element]
 	if {$pos >= 0} {
-	   set value [im_opt_val -limit_to $element]
+	   set value [im_opt_val -limit_to nohtml $element]
 	   template::element::set_value $form_id $element $value
 	}
     }
