@@ -380,6 +380,16 @@ ad_proc -public im_dynfield::search_sql_criteria_from_form {
 		im_category_tree {
 		    lappend criteria "$attribute_table_name.$attribute_name in (select * from im_sub_categories(:$attribute_name))"
 		}
+		im_cost_center_tree {
+		    set sub_cc_sql "
+			select	sub_cc.cost_center_id
+			from	im_cost_centers cc,
+				im_cost_centers sub_cc
+			where	cc.cost_center_id = :$attribute_name and
+				substring(sub_cc.cost_center_code for length(cc.cost_center_code)) = cc.cost_center_code
+		    "
+		    lappend criteria "$attribute_table_name.$attribute_name in ($sub_cc_sql)"
+		}
 		default {
 		    lappend criteria "$attribute_table_name.$attribute_name = :$attribute_name"
 		}
